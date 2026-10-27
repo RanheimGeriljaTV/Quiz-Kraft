@@ -6,36 +6,52 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 
 ---
 
+## 🌐 Live Demonstrasjon & Integrasjon
+* **Offisiell Live Web-app:** [https://ranheimgeriljatv.github.io/Quiz-Kraft/](https://ranheimgeriljatv.github.io/Quiz-Kraft/)
+* **Integrasjon på nettsiden ranheimkraft.no:**
+  ```html
+  <iframe src="https://ranheimgeriljatv.github.io/Quiz-Kraft/" width="100%" height="900" style="border:none;"></iframe>
+  ```
+
+---
+
 ## ✨ Hovedfunksjoner
 
-### 1. Universelt & Seniorvennlig Grensesnitt
-- **Lys modus som standard:** Hvit bakgrunn (`#ffffff`), dype sorte skillelinjer mellom alle ruter (som et velkjent papirark/regneark) og kullsvarte tall for maksimal lesbarhet på projektor.
-- **Mørk modus:** Enkel knapp for å bytte til mørk skjerm ved dempet belysning i lokalet.
-- **Forstørr tekst (A+ / A-):** To store knapper øverst for å forstørre eller forminske all tekst i hele tabellen.
-- **Store knapper med ren norsk tekst:** Ingen kryptiske ikoner alene. Hver handling er tydelig merket (f.eks. *"Legg til nytt lag"*, *"Sorter etter poeng (Finn vinner)"*).
-- **Fullskjermsvisning:** Gjør at quizen fyller hele lerretet eller TV-skjermen med ett klikk.
+### 1. Oppgradert Presentasjonsmodus for Projektor / Storskjerm
+- **Rent for publikum:** Når du trykker **"Vis på fullskjerm (Projektor)"**, forsvinner alle knapper, menyer og administrasjonsverktøy. Salen ser kun den lekre, ryddige poengtavlen!
+- **Stadion-typografi:** Inndatafeltene gjøres om til ren, skarp tekst uten forstyrrende rammer eller markører.
+- **Svevende kontroll-linje:** Quizmaster har en diskret meny i bunnen for raske justeringer som toner bort automatisk når musen står i ro.
+- **🎉 Vinner-feiring:** Trykk på *"Sorter etter poeng"* for å kåre vinneren med en herlig konfetti-animasjon!
 
-### 2. Lynrask Poengføring
-- **Smart tastaturnavigasjon:** Når du skriver inn poeng og trykker `Enter` eller `Pil Ned`, hopper markøren automatisk rett ned til neste lag i samme runde. Dette gjør inntasting av runderesultater lekende lett.
-- **Støtte for halvpoeng:** Du kan skrive både `8,5` og `8.5`. Begge tolkes riktig og formateres pent med norsk komma.
+### 2. Perfekt Visning for Mange Lag (15–30+ lag)
+- **🔲 2-Kolonner Side-om-Side:** Deler tabellen i to parallelle kolonner slik at opptil 25–30 lag får plass på et standard 16:9 widescreen-lerret uten behov for rulling.
+- **🏆 Toppliste-filtre:** Velg enkelt mellom *"Alle lag"*, *"Topp 10"* eller *"Topp 5"* for spennende avslutninger.
+- **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle lagene i salen får se plasseringen sin.
+
+### 3. Ekstra Spenning og Verktøy for Quizmaster
+- **🤫 Hemmelig finale (Cliffhanger-modus):** Slå på *"Skjul siste runde"* for å maskere poengene i finalerunden med `❓` på storskjermen – slik at ingen vet hvem som vant før quizmaster utroper det!
+- **⏱️ Quiz-Timer:** Stor digital stoppeklokke for nedtelling (1 min, 3 min, 5 min, 10 min) med et behagelig digitalt lydsignal når tiden er ute.
+
+### 4. Lynrask Poengføring
+- **Smart tastaturnavigasjon:** Trykk `Enter` eller `Pil Ned` i en poengrute for å hoppe rett ned til neste lag i samme runde.
+- **Støtte for halvpoeng:** Både `8,5` og `8.5` aksepteres og formateres automatisk med norsk komma.
 - **Sanntidssummering:** Sammenlagt-kolonnen helt til høyre regnes ut umiddelbart ved hvert tastetrykk.
-- **Angre-knapp (Undo):** Trykket du feil eller kom borti en knapp? Trykk *"Angre siste endring"* for å gå tilbake.
+- **Angre-knapp (Undo):** Trykket du feil? Trykk *"Angre siste endring"* for å gå tilbake.
 
-### 3. Sortering med Tie-Breaker
+### 5. Sortering med Tie-Breaker
 Når du trykker på **"Sorter etter poeng (Finn vinner)"**:
-1. Lagene sorteres etter høyeste totalpoengsum (1. plass, 2. plass, 3. plass).
+1. Lagene sorteres etter høyeste sammenlagtsum.
 2. **Tie-breaker ved lik poengsum:** Laget med flest poeng i den siste spilte runden kommer foran.
-3. **Sekundær tie-breaker:** Hvis de også har likt i siste runde, sjekkes runden foran der igjen (bakover runde for runde).
+3. **Sekundær tie-breaker:** Hvis de også har likt i siste runde, sjekkes runden foran der igjen bakover.
 4. **Tydelig forklaring:** Ved poenglikhet vises en forklarende tekst på raden (f.eks. *"Foran på runde 4 (8,5 mot 7,0)"* eller *"Delt 1. plass"*).
 
-### 4. Lagring og Flytting mellom PC-er
-- **Automatisk lagring:** Hvert eneste tastetrykk lagres automatisk på datamaskinen (`localStorage`). En grønn statuslinje bekrefter at alt er trygt lagret.
+### 6. Lagring og Flytting mellom PC-er
+- **Automatisk lagring:** Alt lagres i nettleserens minne (`localStorage`) ved hvert tastetrykk.
 - **Jobbe videre hjemme:**
   - Trykk **"Lagre quizen på PC-en"** for å laste ned en fil (`Quiz_Ranheim_DATO.json`).
-  - Send filen til deg selv på e-post eller ta den med på en minnepenn.
-  - Åpne siden på din egen PC hjemme og trykk **"Åpne lagret quiz"** – hele tabellen fylles ut akkurat slik du forlot den.
-- **Ekte Excel (.xlsx):** Laster ned et fullverdig regneark med alle lag, runder, formatering og summer. Fungerer 100 % offline takket være lokalt pakket SheetJS.
-- **Utskrift på papir / PDF:** Skriver ut en ren og pen A4-poengtavle uten knapper og menyer.
+  - Ta med filen på minnepenn eller e-post, åpne siden hjemme og trykk **"Åpne lagret quiz"**.
+- **Ekte Excel (.xlsx):** Laster ned et fullverdig regneark med SheetJS – fungerer 100 % offline.
+- **Utskrift på papir / PDF:** Skriver ut en ren og pen A4-poengtavle uten knapper.
 
 ---
 
@@ -44,17 +60,7 @@ Når du trykker på **"Sorter etter poeng (Finn vinner)"**:
 ### Kjøre lokalt på PC (uten internett)
 1. Last ned prosjektmappen til PC-en.
 2. Dobbeltklikk på filen `index.html`.
-3. Siden åpner seg umiddelbart i standard nettleser (Chrome, Edge, Firefox, Safari) og fungerer helt uten internettforbindelse.
-
-### Bruke på nettsiden ranheimkraft.no
-Siden er publisert på GitHub Pages og kan enten integreres direkte, eller lastes opp på egen webserver:
-
-1. **Direkte via iframe (anbefalt og enklest):**
-   ```html
-   <iframe src="https://ranheimgeriljatv.github.io/Quiz-Kraft/" width="100%" height="900" style="border:none;"></iframe>
-   ```
-2. **Eller last opp filene på egen server:**
-   Last opp filene (`index.html`, `css/`, `js/`, `vendor/`) til ønsket mappe på `ranheimkraft.no` (f.eks. `/quiz/`).
+3. Siden åpner seg umiddelbart i nettleseren og fungerer helt uten internettforbindelse.
 
 ---
 
@@ -63,6 +69,7 @@ Siden er publisert på GitHub Pages og kan enten integreres direkte, eller laste
 - `Pil Opp`: Hopper til forrige lag i samme runde.
 - `Pil Høyre` / `Tab`: Hopper til neste runde.
 - `Pil Venstre` / `Shift+Tab`: Hopper til forrige runde eller lagnavn.
+- `Esc`: Avslutter fullskjermvisning.
 
 ---
 
@@ -72,14 +79,15 @@ Siden er publisert på GitHub Pages og kan enten integreres direkte, eller laste
 Quiz Kraft/
 ├── index.html              # Hovedside og semantisk struktur
 ├── css/
-│   ├── style.css           # Styling, lys/mørk modus, farger og A+/A- skalering
+│   ├── style.css           # Styling, presentasjonsmodus, lys/mørk modus og A+/A-
 │   └── print.css           # Utskriftstilpasset styling for A4-ark
 ├── js/
-│   ├── app.js              # Initialisering, hendelseshåndtering og modus
-│   ├── spreadsheet.js      # Tabellrender og tastaturnavigasjon
+│   ├── app.js              # Initialisering, hendelseshåndtering og timer
+│   ├── spreadsheet.js      # Tabellrender, 2-kolonner, filtre og karusell
 │   ├── scoring.js          # Desimaltolking, sanntidssummer og tie-breaker
 │   ├── storage.js          # localStorage, fil-import/eksport og angrefunksjon
-│   └── excel-export.js     # Generering av .xlsx-filer via SheetJS
+│   ├── excel-export.js     # Generering av .xlsx-filer via SheetJS
+│   └── confetti.js         # Lettvekts vinnerkonfetti-animasjon
 ├── vendor/
 │   └── xlsx.full.min.js    # SheetJS for 100 % offline Excel-eksport
 ├── .gitignore              # Git ignore-regler
