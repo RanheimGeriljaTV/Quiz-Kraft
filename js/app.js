@@ -548,15 +548,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const fontSteps = [15, 18, 22, 26, 30, 35];
   let currentFontIndex = 1;
 
+  const btnFontLarger = document.getElementById('btn-font-larger');
+  const btnFontSmaller = document.getElementById('btn-font-smaller');
+
+  function applyFontScale(px) {
+    document.documentElement.style.setProperty('--font-scale', `${px}px`);
+    localStorage.setItem('quiz_kraft_font_scale', px);
+    if (btnFontSmaller) btnFontSmaller.disabled = (currentFontIndex === 0);
+    if (btnFontLarger) btnFontLarger.disabled = (currentFontIndex === fontSteps.length - 1);
+  }
+
   const savedFont = parseInt(localStorage.getItem('quiz_kraft_font_scale'), 10);
   if (!isNaN(savedFont)) {
     const foundIdx = fontSteps.indexOf(savedFont);
     if (foundIdx !== -1) currentFontIndex = foundIdx;
   }
   applyFontScale(fontSteps[currentFontIndex]);
-
-  const btnFontLarger = document.getElementById('btn-font-larger');
-  const btnFontSmaller = document.getElementById('btn-font-smaller');
 
   if (btnFontLarger) {
     btnFontLarger.addEventListener('click', () => {
@@ -574,13 +581,6 @@ document.addEventListener('DOMContentLoaded', () => {
         applyFontScale(fontSteps[currentFontIndex]);
       }
     });
-  }
-
-  function applyFontScale(px) {
-    document.documentElement.style.setProperty('--font-scale', `${px}px`);
-    localStorage.setItem('quiz_kraft_font_scale', px);
-    if (btnFontSmaller) btnFontSmaller.disabled = (currentFontIndex === 0);
-    if (btnFontLarger) btnFontLarger.disabled = (currentFontIndex === fontSteps.length - 1);
   }
 
   // 14. LYS / MØRK MODUS

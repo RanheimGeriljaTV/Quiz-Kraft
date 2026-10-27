@@ -316,15 +316,17 @@ function buildTableHtml(teamsList, startIndexOffset, roundCount, roundNames, las
 
   html += `
       </tbody>
-      ${!isPres ? `
-      <tfoot>
-        <tr class="summary-row">
-          <td class="col-rank">Snitt</td>
-          <td class="col-team"><strong>${teamsList.length} lag</strong></td>
   `;
 
   // Gjennomsnitt per runde (kun i redigeringsmodus)
   if (!isPres) {
+    html += `
+      <tfoot>
+        <tr class="summary-row">
+          <td class="col-rank">Snitt</td>
+          <td class="col-team"><strong>${teamsList.length} lag</strong></td>
+    `;
+
     for (let r = 0; r < roundCount; r++) {
       let rSum = 0;
       let rCount = 0;

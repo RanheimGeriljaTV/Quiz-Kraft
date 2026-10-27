@@ -3,6 +3,13 @@
 Alle vesentlige endringer i Quiz Kraft dokumenteres i denne filen.
 Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
+## [1.2.1] - 2026-10-27
+
+### Fikset (fix)
+- Rettet en uventet semikolon-syntaksfeil i `spreadsheet.js` og initialiseringsrekkefølge for tekststørrelse-knappene i `app.js` som forhindret tabellen og hendelseslytterne fra å initialiseres i enkelte nettlesere. Tabell og alle knapper laster nå øyeblikkelig og feilfritt.
+
+---
+
 ## [1.2.0] - 2026-10-27
 
 ### Lagt til (feat)
