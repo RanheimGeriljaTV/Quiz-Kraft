@@ -40,10 +40,12 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 - **🏆 Toppliste-filtre:** Velg enkelt mellom *"Alle lag"*, *"Topp 10"* eller *"Topp 5"* for spennende avslutninger.
 - **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle bordene i salen får se plasseringen sin.
 
-### 4. 📊 Komplett Excel-ark (.xlsx) med Akkumulert Stilling Runde for Runde
-- **Alt i ett ark:** Alle lag, runder, sammenlagtsummer, tie-breakere og rundevinnere samles i én helhetlig poengtavle.
-- **Runde for runde for alle lag:** Egen dedikert tabell i samme ark (*Stilling & Sammenlagt poengsum etter hver runde*) som viser eksakt hva hvert lag hadde etter runde 1, runde 2, runde 3 osv.
-- **Uten forvirrende grafer:** Tydelige, skarpe tall og faste kantlinjer som er 100 % lesbare for alle. Kjøres lokalt via ExcelJS uten internett.
+### 4. 📊 Komplett Excel-arbeidsbok (.xlsx) med 4 egne ark
+- **Ark 1 – Hovedoversikt:** Fullstendig poengtavle med alle runder, sammenlagtsummer, pallfarger og rundevinnere.
+- **Ark 2 – Runde for runde:** Hver enkelt rundes fulle poengsummer for alle lag, sortert etter hvem som var best i akkurat den runden.
+- **Ark 3 – Akkumulert stilling:** Løpende sammenlagt poengsum etter hver runde (etter R1, R2, R3 osv.).
+- **Ark 4 – Rundestatistikk:** Ledertavle over mestvinnende lag og nøkkeltall per runde.
+- **100 % Frakoblet via ExcelJS:** Faste kantlinjer, fet skrift og profesjonell formatering uten behov for internett.
 
 ### 5. ⏱️ Ekstra Verktøy for Quizmaster
 - **🤫 Hemmelig finale (Cliffhanger-modus):** Slå på *"Skjul siste runde"* for å maskere poengene i finalerunden med `❓` på storskjermen – slik at spenningen holdes helt til slutten.

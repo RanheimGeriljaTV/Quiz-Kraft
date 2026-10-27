@@ -11,10 +11,11 @@ Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 - **Sortering etter lagnavn (A–Å):** Ny knapp `🔤 Sorter etter navn (A-Å)` sorterer aktive lag alfabetisk med norsk bokstavrekkefølge.
 - **"Finn vinner"-knapp i Fullskjerm/Projektor:** Egen gullknapp `🏆 Finn vinner` i fullskjerm-topplinjen. Hvis siste runde var skjult i hemmelig finale (cliffhanger), avsløres den umiddelbart, poengene sorteres med tie-breaker og gullvinneren løftes til toppen av storskjermen.
 - **Graderte farger på sammenlagtsum:** En diskret og stilren champagne-til-grå varme-gradient på SUM-kolonnen som gjør det lekende lett å se poengnivået nedover listen, med 100 % kullsort tekst og maksimal kontrast (WCAG AAA).
-- **Excel med akkumulert stilling runde for runde (uten klumpete graf):**
-  - Fjernet den uoversiktlige linjegrafen som ble vanskelig å lese med tette poengsummer.
-  - Erstattet med en krystallklar tabell: **"Stilling & Sammenlagt poengsum etter hver runde"** som viser den eksakte poengsummen til alle lag etter hver eneste runde (Runde 1, Runde 2, osv.).
-  - Lagt til tilsvarende fane i webappens analysemodal for umiddelbar visning i nettleseren.
+- **Komplett Excel-arbeidsbok (.xlsx) med 4 egne ark (faner):**
+  - **Ark 1: "Hovedoversikt"**: Fullstendig resultatliste med alle lag, runder, sammenlagtsum, rundevinnere og snitt.
+  - **Ark 2: "Runde for runde"**: Alle lags fulle poengsum for hver enkelt runde, sortert per runde slik at man enkelt ser hvem som var best i runde 1, runde 2 osv., samt differanse til leder.
+  - **Ark 3: "Akkumulert stilling"**: Løpende sammenlagt poengsum etter hver runde for alle lag.
+  - **Ark 4: "Rundestatistikk"**: Ledertavle over flest rundeseiere og nøkkeltall per runde.
 
 ### Forbedret (enhancement)
 - **Fjernet kongekronen på rundevinnere:** Fjernet krone-ikonet (`👑`) fra poengrutene slik at poengsummen vises rent og profesjonelt.
