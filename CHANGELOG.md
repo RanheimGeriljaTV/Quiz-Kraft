@@ -3,6 +3,27 @@
 Alle vesentlige endringer i Quiz Kraft dokumenteres i denne filen.
 Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
+## [1.5.0] - 2026-10-27
+
+### Lagt til (feat)
+- **Fargekoding for rundevinnere:**
+  - Cellen til laget som oppnår høyest poengsum i hver runde fremheves nå automatisk i behagelig lysegrønt (`#dcfce7`) med mørkegrønn ramme og fet skrift.
+  - I fullskjerm/storskjermvisning markeres rundevinnere i tillegg med en staselig krone (`👑`).
+- **Fargekoding for manglende poeng i påbegynte runder:**
+  - Så snart minst ett lag har fått registrert poeng i en runde, markeres alle lag som ennå mangler poeng i samme runde med myk gul/amber bakgrunn (`#fef3c7`), stiplet ramme og "Mangler"-tekst. Det gjør det superlett for quizmaster å se hvem man venter på.
+- **Lagbank & Frammøte-sjekk (Støtte for varierende oppmøte 18–25+ lag):**
+  - Hvert lag har nå en egen avkrysningsboks for deltakelse rett foran lagnavnet.
+  - Når et lag ikke møter opp, fjerner man bare haken: Laget blir liggende trygt i "lagbanken" uten at navnet slettes, dimmes ned i redigeringsmodus, og **skjules automatisk fra storskjermen på projektor**.
+  - Direkte endring i *Antall lag* (f.eks. fra 22 til 18) deaktiverer overskytende lag i stedet for å slette historikken.
+- **Tekststørrelse-knapper (A+ / A-) i Fullskjerm/Projektor:**
+  - Lagt til egne `A+` og `A-`-knapper i toppen under fullskjermvisning, slik at quizmaster raskt kan finjustere skriftstørrelsen på lerretet uavhengig av avstand og oppløsning.
+- **Manuell styring av 2-kolonners visning:**
+  - Fjernet automatisk påtvinging av 2 kolonner ved mange lag. Quizmaster velger nå fritt selv når 2 kolonner skal slås på via den tydelige knappen.
+- **Komplett formatert Excel-ark med innebygd graf:**
+  - Excel-nedlastingen (`.xlsx`) genererer et helhetlig regneark med kantlinjer, marineblå topplinje, grønne rundevinnere, gul sammenlagtsum, rundestatistikk (vinnere, snitt, bunn) og **et innebygd, høyoppløselig linjediagram over poengutviklingen**.
+
+---
+
 ## [1.4.0] - 2026-10-27
 
 ### Forbedret (enhancement)

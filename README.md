@@ -19,6 +19,9 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 
 ### 1. ⚡ Lynraskt Oppsett & Poengføring
 - **Direkte valg av antall lag og runder:** Skriv inn ønsket antall (f.eks. `25` lag og `8` runder) direkte i tallfeltene øverst – tabellen tilpasser seg umiddelbart på ett sekund.
+- **Lagbank & Frammøte:** Har dere 21 lag den ene gangen og 18 neste gang? Hvert lag har en egen avkrysningsboks for oppmøte. Uaktive lag bevares trygt i banken, dimmes ned og **skjules automatisk fra storskjermen på projektor**.
+- **Farger på rundevinnere:** Laget med best poengsum i runden markeres automatisk med myk lysegrønn farge og krone (`👑`) på storskjerm.
+- **Farge på manglende poeng:** Celler som mangler poeng i en påbegynt runde markeres med gul stiplet ramme og "Mangler" slik at det er superlett å se hvem som gjenstår.
 - **Smart tastaturnavigasjon:** Trykk `Enter` eller `Pil Ned` i en poengrute for å hoppe rett ned til neste lag i samme runde.
 - **Støtte for halvpoeng:** Både `8,5` og `8.5` aksepteres og formateres automatisk med norsk komma.
 - **Sanntidssummering:** Sammenlagt-kolonnen helt til høyre regnes ut umiddelbart ved hvert tastetrykk.
@@ -26,16 +29,17 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 
 ### 2. 🖥️ Ren og Maksimert Fullskjerm (Projektor / Storskjerm)
 - **Regnearket maksimeres til 100 %:** I fullskjermvisning fjernes alle bunnlinjer, svevemenyer og fotnoter. Tabellen utnytter hele skjermhøyden og bredden på lerretet.
-- **Minimalistisk styring:** Topplinjen har enkle snarveier for 2 kolonner, Topp 10, hemmelig finale og lukkeknapp (`✕ Lukk (Esc)`).
+- **Tekststørrelse på storskjerm:** Egne `A+` og `A-`-knapper i toppen av fullskjermen gjør det lett å tilpasse skriften til lerretet i lokalet.
+- **Minimalistisk styring:** Topplinjen har enkle snarveier for 2 kolonner (manuell styring), Topp 10, hemmelig finale og lukkeknapp (`✕ Lukk (Esc)`). Inaktive lag skjules helt.
 
 ### 3. 👥 Perfekt Visning for Mange Lag (15–30+ lag)
-- **🔲 2-Kolonner Side-om-Side:** Deler tabellen i to parallelle lister slik at opptil 25–30 lag får plass på et standard 16:9-lerret uten behov for rulling.
+- **🔲 2-Kolonner Side-om-Side:** Deler tabellen i to parallelle lister med et enkelt klikk slik at opptil 25–30 lag får plass på et standard 16:9-lerret uten behov for rulling.
 - **🏆 Toppliste-filtre:** Velg enkelt mellom *"Alle lag"*, *"Topp 10"* eller *"Topp 5"* for spennende avslutninger.
 - **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle bordene i salen får se plasseringen sin.
 
-### 4. 📊 Stilrent Excel-ark (.xlsx) i ett samlet bilde
+### 4. 📊 Komplett Excel-ark (.xlsx) med Grafer & Formatering
 - **Alt i ett ark:** Alle lag, runder, sammenlagtsummer, tie-breakere og rundevinnere samles i én helhetlig, lekker poengtavle.
-- **Ekte formatering:** Profesjonelle faste kantlinjer, fet skrift, marineblå tittelrad og gul sammenlagt-kolonne. Kjøres 100 % lokalt via ExcelJS.
+- **Ekte formatering & Innebygd Graf:** Profesjonelle faste kantlinjer, fet skrift, marineblå tittelrad, grønne rundevinnere, gul sammenlagt-kolonne og et **innebygd linjediagram over poengutviklingen**. Kjøres 100 % lokalt via ExcelJS uten behov for internett.
 
 ### 5. ⏱️ Ekstra Verktøy for Quizmaster
 - **🤫 Hemmelig finale (Cliffhanger-modus):** Slå på *"Skjul siste runde"* for å maskere poengene i finalerunden med `❓` på storskjermen – slik at spenningen holdes helt til slutten.
