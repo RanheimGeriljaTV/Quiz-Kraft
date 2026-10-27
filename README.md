@@ -47,11 +47,14 @@ Når du trykker på **"Sorter etter poeng (Finn vinner)"**:
 3. Siden åpner seg umiddelbart i standard nettleser (Chrome, Edge, Firefox, Safari) og fungerer helt uten internettforbindelse.
 
 ### Bruke på nettsiden ranheimkraft.no
-1. Last opp filene (`index.html`, `css/`, `js/`, `vendor/`) til ønsket katalog på webserveren (f.eks. `/quiz/`).
-2. Siden kan også bygges inn i en eksisterende side med en enkel `<iframe>`:
+Siden er publisert på GitHub Pages og kan enten integreres direkte, eller lastes opp på egen webserver:
+
+1. **Direkte via iframe (anbefalt og enklest):**
    ```html
-   <iframe src="/quiz/index.html" width="100%" height="800" style="border:none;"></iframe>
+   <iframe src="https://ranheimgeriljatv.github.io/Quiz-Kraft/" width="100%" height="900" style="border:none;"></iframe>
    ```
+2. **Eller last opp filene på egen server:**
+   Last opp filene (`index.html`, `css/`, `js/`, `vendor/`) til ønsket mappe på `ranheimkraft.no` (f.eks. `/quiz/`).
 
 ---
 
