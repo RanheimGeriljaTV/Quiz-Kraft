@@ -17,36 +17,35 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 
 ## ✨ Hovedfunksjoner
 
-### 1. 🎖️ Runde for Runde: Hvem var best i hver runde?
-- **Rundevinnere:** Egen visning som kårer vinneren av hver enkelt runde med pokal, vinnende poengsum og rundesnitt!
-- **Flest rundeseiere:** Sammenlagtoversikt over hvilke lag som har stukket av med flest rundeseire.
-- **Interaktiv Graf i nettleseren:** Innebygd linjediagram som viser lagenes poengutvikling runde for runde.
-- **Ekte Excel (.xlsx) med 3 ark:**
-  1. *Sammenlagt:* Hele tabellen med plassering, poeng og merknader.
-  2. *Rundevinnere:* Tabell over hvem som vant hver runde, snitt og flest seiere.
-  3. *Rundeutvikling (Grafdata):* Ferdig oppsatt datatabell klargjort for Excels innebygde linjediagrammer ("Sett inn linjediagram").
-
-### 2. 🖥️ Oppgradert Presentasjonsmodus for Projektor / Storskjerm
-- **Rent for publikum:** Når du trykker **"Vis på fullskjerm (Projektor)"**, forsvinner alle knapper, menyer og administrasjonsverktøy. Salen ser kun den lekre, ryddige poengtavlen!
-- **Stadion-typografi:** Inndatafeltene gjøres om til ren, skarp tekst uten forstyrrende rammer eller markører.
-- **Svevende kontroll-linje:** Quizmaster har en diskret meny i bunnen for raske justeringer som toner bort automatisk når musen står i ro.
-- **🎉 Vinner-feiring:** Trykk på *"Sorter etter poeng"* for å kåre vinneren med en herlig konfetti-animasjon!
-
-### 3. 👥 Perfekt Visning for Mange Lag (15–30+ lag)
-- **🔲 2-Kolonner Side-om-Side:** Deler tabellen i to parallelle kolonner slik at opptil 25–30 lag får plass på et standard 16:9 widescreen-lerret uten behov for rulling.
-- **🏆 Toppliste-filtre:** Velg enkelt mellom *"Alle lag"*, *"Topp 10"* eller *"Topp 5"* for spennende avslutninger.
-- **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle lagene i salen får se plasseringen sin.
-
-### 4. ⏱️ Spenning og Verktøy for Quizmaster
-- **🤫 Hemmelig finale (Cliffhanger-modus):** Slå på *"Skjul siste runde"* for å maskere poengene i finalerunden med `❓` på storskjermen – slik at ingen vet hvem som vant før quizmaster utroper det!
-- **⏱️ Quiz-Timer:** Stor digital stoppeklokke for nedtelling (1 min, 3 min, 5 min, 10 min) med et behagelig digitalt lydsignal når tiden er ute.
-
-### 5. ⚡ Lynrask Poengføring & Oppsett
-- **Direkte valg av antall lag og runder:** Skriv inn ønsket antall (f.eks. `25` lag og `8` runder) direkte i tallfeltene øverst – tabellen tilpasser seg umiddelbart!
+### 1. ⚡ Lynraskt Oppsett & Poengføring
+- **Direkte valg av antall lag og runder:** Skriv inn ønsket antall (f.eks. `25` lag og `8` runder) direkte i tallfeltene øverst – tabellen tilpasser seg umiddelbart på ett sekund.
 - **Smart tastaturnavigasjon:** Trykk `Enter` eller `Pil Ned` i en poengrute for å hoppe rett ned til neste lag i samme runde.
 - **Støtte for halvpoeng:** Både `8,5` og `8.5` aksepteres og formateres automatisk med norsk komma.
 - **Sanntidssummering:** Sammenlagt-kolonnen helt til høyre regnes ut umiddelbart ved hvert tastetrykk.
-- **Angre-knapp (Undo):** Trykket du feil? Trykk *"Angre siste endring"* for å gå tilbake.
+- **Angre-knapp (Undo):** Trykket du feil eller slettet et lag? Trykk *"Angre"* for å gå trygt tilbake.
+
+### 2. 🖥️ Ren Presentasjonsmodus for Projektor / Storskjerm
+- **Ingen knapper eller menyer for publikum:** Når du trykker **"Vis på fullskjerm (Projektor)"**, fjernes alle administrasjonsknapper, menyer og bunnelementer helt. Salen ser kun den lekre stadion-poengtavlen.
+- **Diskret svevemeny for quizmaster:** En slank, kompakt kontroll-linje nederst gir rask tilgang til visninger og toner automatisk bort når musen står i ro.
+- **🎉 Vinner-feiring:** Trykk på *"Sorter etter poeng"* for å kåre vinneren med et festlig konfetti-dryss!
+
+### 3. 👥 Perfekt Visning for Mange Lag (15–30+ lag)
+- **🔲 2-Kolonner Side-om-Side:** Deler tabellen i to parallelle lister slik at opptil 25–30 lag får plass på et standard 16:9-lerret uten behov for rulling.
+- **🏆 Toppliste-filtre:** Velg enkelt mellom *"Alle lag"*, *"Topp 10"* eller *"Topp 5"* for spennende avslutninger.
+- **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle bordene i salen får se plasseringen sin.
+
+### 4. 🎖️ Runde for Runde: Hvem var best i hver runde?
+- **Rundevinnere:** Egen analysevisning som kårer vinneren av hver enkelt runde med pokal, vinnende poengsum og rundesnitt.
+- **Flest rundeseiere:** Sammenlagtoversikt over hvilke lag som har stukket av med flest rundeseire.
+- **Interaktiv Graf i nettleseren:** Innebygd linjediagram som viser lagenes poengutvikling runde for runde (både akkumulert og per runde).
+- **Ekte Excel (.xlsx) med 3 ark:**
+  1. *Sammenlagt:* Hovedtabellen med plassering, poeng og merknader.
+  2. *Rundevinnere:* Hvem som vant hver runde, snitt og flest seiere.
+  3. *Rundeutvikling (Grafdata):* Ferdig oppsatt datatabell klargjort for Excels innebygde linjediagrammer ("Sett inn linjediagram").
+
+### 5. ⏱️ Ekstra Verktøy for Quizmaster
+- **🤫 Hemmelig finale (Cliffhanger-modus):** Slå på *"Skjul siste runde"* for å maskere poengene i finalerunden med `❓` på storskjermen – slik at spenningen holdes helt til slutten.
+- **⏱️ Quiz-Timer:** Digital stoppeklokke for nedtelling (1 min, 3 min, 5 min, 10 min) med et behagelig digitalt lydsignal når tiden er ute.
 
 ### 6. 🏆 Sortering med Tie-Breaker
 Når du trykker på **"Sorter etter poeng (Finn vinner)"**:
@@ -60,8 +59,17 @@ Når du trykker på **"Sorter etter poeng (Finn vinner)"**:
 - **Jobbe videre hjemme:**
   - Trykk **"Lagre quizen på PC-en"** for å laste ned en fil (`Quiz_Ranheim_DATO.json`).
   - Ta med filen på minnepenn eller e-post, åpne siden hjemme og trykk **"Åpne lagret quiz"**.
-- **100 % Frakoblet Excel (.xlsx):** Genererer arbeidsbøker helt uten internettforbindelse.
+- **100 % Frakoblet Excel (.xlsx):** Genererer arbeidsbøker helt uten internettforbindelse via SheetJS.
 - **Utskrift på papir / PDF:** Skriver ut en ren og pen A4-poengtavle uten knapper.
+
+---
+
+## 🚀 Hvordan bruke applikasjonen
+
+### Kjøre lokalt på PC (uten internett)
+1. Last ned prosjektmappen til PC-en.
+2. Dobbeltklikk på filen `index.html`.
+3. Siden åpner seg umiddelbart i nettleseren og fungerer helt uten internettforbindelse.
 
 ---
 
