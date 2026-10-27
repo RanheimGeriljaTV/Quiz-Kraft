@@ -737,6 +737,10 @@ body.dark-theme .score-input:focus {
   color: #15803d !important;
   font-weight: 900 !important;
 }
+.cell-round-winner .pres-score {
+  color: #15803d !important;
+  font-weight: 900 !important;
+}
 body.dark-theme .cell-round-winner {
   background-color: #064e3b !important;
   border-color: #22c55e !important;
@@ -744,6 +748,35 @@ body.dark-theme .cell-round-winner {
 body.dark-theme .score-winner {
   background-color: #064e3b !important;
   color: #86efac !important;
+}
+body.dark-theme .cell-round-winner .pres-score {
+  color: #86efac !important;
+}
+
+/* DÅRLIGSTE/LAVESTE RUNDE CELLER (MYK RØD FREMHEVING) */
+.cell-round-lowest {
+  background-color: #fee2e2 !important;
+  border: 2px solid #ef4444 !important;
+}
+.score-lowest {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+  font-weight: 900 !important;
+}
+.cell-round-lowest .pres-score {
+  color: #991b1b !important;
+  font-weight: 900 !important;
+}
+body.dark-theme .cell-round-lowest {
+  background-color: #450a0a !important;
+  border-color: #dc2626 !important;
+}
+body.dark-theme .score-lowest {
+  background-color: #450a0a !important;
+  color: #fca5a5 !important;
+}
+body.dark-theme .cell-round-lowest .pres-score {
+  color: #fca5a5 !important;
 }
 
 /* MANGLENDE POENG I PÅBEGYNT RUNDE (GUL/AMBER FREMHEVING) */
@@ -839,12 +872,12 @@ body.dark-theme .team-row-inactive {
 .cumulative-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.92rem;
+  font-size: 12.5px !important;
 }
 
 .cumulative-table th, 
 .cumulative-table td {
-  padding: 0.45rem 0.6rem;
+  padding: 4px 8px !important;
   border: 1px solid var(--border-cell);
   text-align: center;
 }
@@ -1017,18 +1050,23 @@ body.dark-theme .cumulative-table td.cum-leader {
   background-color: var(--th-bg);
 }
 
-/* RUNDE-ANALYSE BOKS */
+/* RUNDE-ANALYSE BOKS (Frikoblet fra storskjerm-skalering og A+ / A- knappene) */
+#quiz-analysis-modal {
+  font-size: 14px;
+}
+
 .analysis-box {
   background-color: var(--bg-card);
   color: var(--text-main);
   border: 3px solid var(--border-strong);
-  border-radius: 16px;
-  padding: 1.5rem 2rem;
-  max-width: 950px;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  max-width: 900px;
   width: 95%;
-  max-height: 90vh;
+  max-height: 85vh;
   overflow-y: auto;
   box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+  font-size: 14px !important; /* Fast, rolig og behagelig skriftstørrelse */
 }
 
 .analysis-header {
@@ -1036,31 +1074,31 @@ body.dark-theme .cumulative-table td.cum-leader {
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid var(--border-light);
-  padding-bottom: 0.8rem;
-  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 
 .analysis-header h2 {
   margin: 0;
-  font-size: 1.6rem;
-  font-weight: 900;
+  font-size: 18px !important;
+  font-weight: 800;
 }
 
 .analysis-tabs {
   display: flex;
-  gap: 0.8rem;
-  margin-bottom: 1.2rem;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
   border-bottom: 2px solid var(--border-light);
-  padding-bottom: 0.6rem;
+  padding-bottom: 0.5rem;
 }
 
 .analysis-tab-btn {
   background: var(--bg-surface);
-  border: 2px solid var(--border-cell);
-  border-radius: 8px;
-  padding: 0.6rem 1.2rem;
-  font-size: 1.05rem;
-  font-weight: 800;
+  border: 1.5px solid var(--border-cell);
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem !important;
+  font-size: 13px !important;
+  font-weight: 700;
   cursor: pointer;
   color: var(--text-main);
 }
@@ -1072,49 +1110,51 @@ body.dark-theme .cumulative-table td.cum-leader {
 }
 
 .analysis-tab-content h3 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.8rem;
-  font-size: 1.25rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+  font-size: 15px !important;
+  font-weight: 800;
 }
 
 /* RUNDEVINNER-KORT */
 .round-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
 }
 
 .round-card {
   background-color: var(--bg-surface);
-  border: 2px solid var(--border-cell);
-  border-radius: 10px;
-  padding: 1rem;
+  border: 1.5px solid var(--border-cell);
+  border-radius: 8px;
+  padding: 0.8rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-size: 13px !important;
 }
 
 .round-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: 900;
-  font-size: 1.15rem;
+  font-weight: 800;
+  font-size: 13px !important;
   border-bottom: 1px solid var(--border-light);
-  padding-bottom: 0.4rem;
-  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .round-winner-name {
-  font-size: 1.3rem;
-  font-weight: 900;
+  font-size: 15px !important;
+  font-weight: 800;
   color: var(--btn-gold);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .round-stat-row {
   display: flex;
   justify-content: space-between;
-  font-size: 0.95rem;
+  font-size: 12px !important;
   color: var(--text-muted);
   margin-top: 0.2rem;
 }
@@ -1123,8 +1163,8 @@ body.dark-theme .cumulative-table td.cum-leader {
 .tally-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
 }
 
 .tally-item {
@@ -1132,18 +1172,19 @@ body.dark-theme .cumulative-table td.cum-leader {
   align-items: center;
   justify-content: space-between;
   background-color: var(--bg-surface);
-  border: 2px solid var(--border-cell);
-  border-radius: 8px;
-  padding: 0.6rem 1rem;
+  border: 1.5px solid var(--border-cell);
+  border-radius: 6px;
+  padding: 0.45rem 0.8rem !important;
+  font-size: 13px !important;
   font-weight: 700;
 }
 
 .tally-badge {
   background-color: var(--btn-gold);
   color: #ffffff;
-  padding: 0.25rem 0.6rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 11px !important;
   font-weight: 800;
 }
 
@@ -1151,18 +1192,24 @@ body.dark-theme .cumulative-table td.cum-leader {
 .chart-controls-bar {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 13px !important;
   font-weight: 700;
+}
+
+.chart-controls-bar .btn-chip {
+  font-size: 12px !important;
+  padding: 0.35rem 0.75rem !important;
 }
 
 .chart-canvas-container {
   background-color: #ffffff;
   border: 2px solid var(--border-cell);
-  border-radius: 10px;
-  padding: 1rem;
+  border-radius: 8px;
+  padding: 0.8rem;
   width: 100%;
-  height: 420px;
+  height: 400px;
   box-sizing: border-box;
 }
 
@@ -1177,17 +1224,22 @@ body.dark-theme .chart-canvas-container {
 }
 
 .chart-hint {
-  font-size: 0.95rem;
+  font-size: 12px !important;
   color: var(--text-muted);
-  margin-top: 0.8rem;
+  margin-top: 0.6rem;
 }
 
 .analysis-footer {
-  margin-top: 1.2rem;
-  padding-top: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
   border-top: 2px solid var(--border-light);
   display: flex;
   justify-content: flex-end;
+}
+
+.analysis-footer .btn {
+  font-size: 13px !important;
+  padding: 0.5rem 1rem !important;
 }
 
 /* Info footer */

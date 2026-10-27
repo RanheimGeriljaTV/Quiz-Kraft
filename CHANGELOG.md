@@ -3,6 +3,26 @@
 Alle vesentlige endringer i Quiz Kraft dokumenteres i denne filen.
 Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
+## [1.8.0] - 2026-10-27
+
+### Lagt til (feat)
+- **Rød markering for dårligste/laveste poengsum per runde:**
+  - **I Excel-arket:**
+    - På arket **«Sammenlagt»** markeres lagene med rundens laveste poengsum med myk lyserød bakgrunn (`#FEE2E2`) og mørkerød tekst (`#991B1B`), i samspill med den grønne rundevinnerfargen.
+    - Egen oppsummeringsrad for *«Laveste score»* er lagt til under snittet på sammenlagtarket.
+    - På samtlige dedikerte **rundeark («Runde 1», «Runde 2» osv.)** fremheves laget med laveste poengsum med lyserød bakgrunnsfarge og statusen *«🔻 Laveste score»*, samt rød markering i statistikkboksen.
+  - **I web-poengtavlen (både normal og fullskjerm):**
+    - Cellen til laget med dårligst/lavest score i runden markeres med behagelig lyserød bakgrunn og mørkerød skrift. Markeringen styres av `🎨 Utheving: PÅ / AV`.
+
+### Forbedret (enhancement)
+- **Roligere og mer kompakt skrift i «Runde-analyse & grafer»:**
+  - Fontstørrelsen i analysevinduet er redusert til et standard, ryddig nivå (13–14px) og **frikoblet fra storskjermens A+ / A- forstørrelsesknapper**.
+  - Selv om skriften forstørres kraftig for publikum på lerretet, forblir analysevinduet, kortene og tabellene i normal, oversiktlig størrelse.
+- **Cache-busting v1.8.0:**
+  - Oppdatert versjonsstempel `?v=1.8.0` på alle stilark og skript.
+
+---
+
 ## [1.7.0] - 2026-10-27
 
 ### Lagt til (feat)

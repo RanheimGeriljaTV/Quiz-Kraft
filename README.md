@@ -20,7 +20,7 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 ### 1. ⚡ Lynraskt Oppsett & Poengføring
 - **Direkte valg av antall lag og runder:** Skriv inn ønsket antall (f.eks. `25` lag og `8` runder) direkte i tallfeltene øverst – tabellen tilpasser seg umiddelbart på ett sekund.
 - **Lagbank & Frammøte:** Har dere 21 lag den ene gangen og 18 neste gang? Hvert lag har en egen avkrysningsboks for oppmøte. Uaktive lag bevares trygt i banken, dimmes ned og **skjules automatisk fra storskjermen på projektor**.
-- **Valgfri fargeutheving (🎨 Utheving):** Egen knapp for å slå av eller på fargekoding av rundevinnere og manglende poeng.
+- **Valgfri fargeutheving (🎨 Utheving):** Egen knapp for å slå av eller på fargekoding av rundevinnere (lysegrønt), dårligste runde (lyserødt) og manglende poeng (amber/gult).
 - **Alfabetisk sortering (A–Å):** Trykk *"🔤 Sorter etter navn (A-Å)"* for å sortere aktive lag alfabetisk ved oppsett eller oppmøte.
 - **Tøm poeng (🧹):** Nullstill alle poeng raskt og trygt for neste runde eller ny omgang – lagnavn og oppmøte bevares.
 - **Smart tastaturnavigasjon:** Trykk `Enter` eller `Pil Ned` i en poengrute for å hoppe rett ned til neste lag i samme runde.
@@ -41,8 +41,8 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 - **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle bordene i salen får se plasseringen sin.
 
 ### 4. 📊 Komplett Excel-arbeidsbok (.xlsx) med egne ark per runde
-- **Ark "Sammenlagt":** Fullstendig poengtavle med alle runder, sammenlagtsummer, pallfarger og rundevinnere.
-- **Egne ark for hver runde ("Runde 1", "Runde 2", osv.):** Samtlige deltakende lag listes sortert fra høyeste til laveste poengsum for akkurat den runden, med differanse til vinneren og egen statistikkboks (høyeste score, snitt, laveste, antall lag).
+- **Ark "Sammenlagt":** Fullstendig poengtavle med alle runder, sammenlagtsummer, pallfarger, rundevinnere (grønt) og laveste rundepoeng (rødt).
+- **Egne ark for hver runde ("Runde 1", "Runde 2", osv.):** Samtlige deltakende lag listes sortert fra høyeste til laveste poengsum for akkurat den runden, med differanse til vinneren, rød fremheving av dårligste score og egen statistikkboks (høyeste score, snitt, laveste, antall lag).
 - **Ark "Akkumulert stilling":** Løpende sammenlagt poengsum etter hver runde (etter R1, R2, R3 osv.).
 - **Ark "Mestvinnende":** Ledertavle over flest rundeseiere og nøkkeltall per runde.
 - **Synlige arkfaner i Excel:** Sikret med eksplisitt fanelinje-visning slik at alle arkene er umiddelbart tilgjengelige i Microsoft Excel.

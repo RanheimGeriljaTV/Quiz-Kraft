@@ -55,15 +55,24 @@ async function exportQuizToExcel(state) {
     right: { style: 'thin', color: { argb: 'FF000000' } }
   };
 
-  // Beregn rundevinnere og statistikk
+  // Beregn rundevinnere, laveste score og statistikk
   const roundMaxScores = [];
+  const roundMinScores = [];
   for (let r = 0; r < roundCount; r++) {
     let max = -Infinity;
+    let min = Infinity;
+    let count = 0;
     activeTeams.forEach(t => {
       const val = window.QuizScoring ? window.QuizScoring.parseScore(t.scores ? t.scores[r] : null) : null;
-      if (val !== null && val > max) max = val;
+      if (val !== null) {
+        count++;
+        if (val > max) max = val;
+        if (val < min) min = val;
+      }
     });
     roundMaxScores.push(max > 0 ? max : null);
+    // Uthev dårligste score bare hvis det er minst 2 distinkte poengsummer i runden
+    roundMinScores.push(count > 1 && min < max ? min : null);
   }
 
   const roundWinners = window.QuizRoundAnalysis 
@@ -88,10 +97,10 @@ async function exportQuizToExcel(state) {
   t1.alignment = { horizontal: 'center', vertical: 'middle' };
   sheetMain.getRow(1).height = 34;
 
-  // Metadata & Tips
+  // Metadata, fargeforklaring & Tips
   sheetMain.mergeCells(2, 1, 2, totalCols1);
   const m1 = sheetMain.getCell(2, 1);
-  m1.value = `Dato: ${dateStr}  |  ranheimkraft.no  |  ${activeTeams.length} deltakende lag  |  ${roundCount} runder  |  💡 Tips: Klikk på fanene nederst for å se egne ark per runde!`;
+  m1.value = `Dato: ${dateStr}  |  ranheimkraft.no  |  ${activeTeams.length} deltakende lag  |  🟢 Grønn = Rundevinner  |  🔴 Rød = Laveste score  |  💡 Tips: Klikk på fanene nederst for egne ark per runde!`;
   m1.font = { name: 'Arial', size: 9, italic: true, color: { argb: 'FFE2E8F0' } };
   m1.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1E3A8A' } };
   m1.alignment = { horizontal: 'center', vertical: 'middle' };
@@ -144,6 +153,7 @@ async function exportQuizToExcel(state) {
       const cellScore = row.getCell(3 + r);
       const parsed = window.QuizScoring ? window.QuizScoring.parseScore(team.scores ? team.scores[r] : null) : null;
       const isWinner = roundMaxScores[r] !== null && parsed !== null && parsed === roundMaxScores[r];
+      const isLowest = roundMinScores[r] !== null && parsed !== null && parsed === roundMinScores[r];
 
       if (parsed !== null) {
         cellScore.value = parsed;
@@ -152,13 +162,17 @@ async function exportQuizToExcel(state) {
         cellScore.value = '';
       }
 
-      cellScore.font = { name: 'Arial', size: 10, bold: isWinner, color: isWinner ? { argb: 'FF15803D' } : undefined };
+      if (isWinner) {
+        cellScore.font = { name: 'Arial', size: 10, bold: true, color: { argb: 'FF15803D' } };
+        cellScore.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFDCFCE7' } };
+      } else if (isLowest) {
+        cellScore.font = { name: 'Arial', size: 10, bold: true, color: { argb: 'FF991B1B' } };
+        cellScore.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEE2E2' } };
+      } else {
+        cellScore.font = { name: 'Arial', size: 10 };
+      }
       cellScore.alignment = { horizontal: 'center', vertical: 'middle' };
       cellScore.border = thinBorder;
-
-      if (isWinner) {
-        cellScore.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFDCFCE7' } };
-      }
     }
 
     const totalColIdx = 3 + roundCount;
@@ -177,20 +191,21 @@ async function exportQuizToExcel(state) {
     cellNote.alignment = { horizontal: 'left', vertical: 'middle', indent: 1 };
     cellNote.border = thinBorder;
 
-    if (rank === 1) applyPallFill(row, 'FFFEF9C3', roundCount, roundMaxScores, team);
-    else if (rank === 2) applyPallFill(row, 'FFF1F5F9', roundCount, roundMaxScores, team);
-    else if (rank === 3) applyPallFill(row, 'FFFFEDD5', roundCount, roundMaxScores, team);
+    if (rank === 1) applyPallFill(row, 'FFFEF9C3', roundCount, roundMaxScores, roundMinScores, team);
+    else if (rank === 2) applyPallFill(row, 'FFF1F5F9', roundCount, roundMaxScores, roundMinScores, team);
+    else if (rank === 3) applyPallFill(row, 'FFFFEDD5', roundCount, roundMaxScores, roundMinScores, team);
 
     rowIdx1++;
   });
 
-  function applyPallFill(row, colorHex, rCount, maxScores, team) {
+  function applyPallFill(row, colorHex, rCount, maxScores, minScores, team) {
     row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: colorHex } };
     row.getCell(2).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: colorHex } };
     for (let r = 0; r < rCount; r++) {
       const parsed = window.QuizScoring ? window.QuizScoring.parseScore(team.scores ? team.scores[r] : null) : null;
       const isWinner = maxScores[r] !== null && parsed !== null && parsed === maxScores[r];
-      if (!isWinner) {
+      const isLowest = minScores[r] !== null && parsed !== null && parsed === minScores[r];
+      if (!isWinner && !isLowest) {
         row.getCell(3 + r).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: colorHex } };
       }
     }
@@ -300,6 +315,28 @@ async function exportQuizToExcel(state) {
   }
   avgRow1.getCell(3 + roundCount).border = thinBorder;
   avgRow1.getCell(3 + roundCount + 1).border = thinBorder;
+  rowIdx1++;
+
+  const lowestRow1 = sheetMain.getRow(rowIdx1);
+  lowestRow1.height = 20;
+  lowestRow1.getCell(1).value = 'Laveste score';
+  lowestRow1.getCell(1).font = { name: 'Arial', size: 9, bold: true };
+  lowestRow1.getCell(1).border = thinBorder;
+  lowestRow1.getCell(2).value = 'Laveste poengsum:';
+  lowestRow1.getCell(2).font = { name: 'Arial', size: 9 };
+  lowestRow1.getCell(2).border = thinBorder;
+
+  for (let r = 0; r < roundCount; r++) {
+    const rw = roundWinners[r];
+    const cell = lowestRow1.getCell(3 + r);
+    cell.value = rw && rw.hasScores ? rw.minScore : '-';
+    cell.font = { name: 'Arial', size: 9, bold: true, color: { argb: 'FF991B1B' } };
+    cell.alignment = { horizontal: 'center', vertical: 'middle' };
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEE2E2' } };
+    cell.border = thinBorder;
+  }
+  lowestRow1.getCell(3 + roundCount).border = thinBorder;
+  lowestRow1.getCell(3 + roundCount + 1).border = thinBorder;
 
   sheetMain.getColumn(1).width = 14;
   sheetMain.getColumn(2).width = 28;
@@ -318,6 +355,7 @@ async function exportQuizToExcel(state) {
     const roundTitle = roundNames[r] || `Runde ${r + 1}`;
     const sheetName = `Runde ${r + 1}`;
     const maxScoreInR = roundMaxScores[r];
+    const minScoreInR = roundMinScores[r];
     const rw = roundWinners[r];
 
     const roundSheet = workbook.addWorksheet(sheetName, {
@@ -386,6 +424,7 @@ async function exportQuizToExcel(state) {
       row.height = 22;
 
       const isWinner = maxScoreInR !== null && tData.score !== null && tData.score === maxScoreInR;
+      const isLowest = minScoreInR !== null && tData.score !== null && tData.score === minScoreInR;
 
       // Plassering i runden
       const cellPos = row.getCell(1);
@@ -395,14 +434,14 @@ async function exportQuizToExcel(state) {
       else if (pos === 2) posText = `🥉 3. plass`;
 
       cellPos.value = posText;
-      cellPos.font = { name: 'Arial', size: 10, bold: pos < 3 || isWinner };
+      cellPos.font = { name: 'Arial', size: 10, bold: pos < 3 || isWinner || isLowest };
       cellPos.alignment = { horizontal: 'center', vertical: 'middle' };
       cellPos.border = thinBorder;
 
       // Lagnavn
       const cellName = row.getCell(2);
       cellName.value = tData.name;
-      cellName.font = { name: 'Arial', size: 10, bold: pos < 3 || isWinner };
+      cellName.font = { name: 'Arial', size: 10, bold: pos < 3 || isWinner || isLowest };
       cellName.alignment = { horizontal: 'left', vertical: 'middle', indent: 1 };
       cellName.border = thinBorder;
 
@@ -418,7 +457,9 @@ async function exportQuizToExcel(state) {
         name: 'Arial', 
         size: 11, 
         bold: true, 
-        color: isWinner ? { argb: 'FF15803D' } : { argb: 'FF000000' } 
+        color: isWinner 
+          ? { argb: 'FF15803D' } 
+          : (isLowest ? { argb: 'FF991B1B' } : { argb: 'FF000000' })
       };
       cellScore.alignment = { horizontal: 'center', vertical: 'middle' };
       cellScore.border = thinBorder;
@@ -437,15 +478,24 @@ async function exportQuizToExcel(state) {
 
       // Status
       const cellStatus = row.getCell(5);
-      cellStatus.value = isWinner ? '🏆 Rundevinner' : '';
-      cellStatus.font = { name: 'Arial', size: 9, bold: isWinner, color: { argb: 'FF15803D' } };
+      cellStatus.value = isWinner ? '🏆 Rundevinner' : (isLowest ? '🔻 Laveste score' : '');
+      cellStatus.font = { 
+        name: 'Arial', 
+        size: 9, 
+        bold: isWinner || isLowest, 
+        color: isWinner ? { argb: 'FF15803D' } : (isLowest ? { argb: 'FF991B1B' } : undefined) 
+      };
       cellStatus.alignment = { horizontal: 'center', vertical: 'middle' };
       cellStatus.border = thinBorder;
 
-      // Fremhev vinnerlag i mykt grønt
+      // Fremhev vinnerlag i mykt grønt, laveste score i mykt rødt
       if (isWinner) {
         for (let c = 1; c <= 5; c++) {
           row.getCell(c).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFDCFCE7' } };
+        }
+      } else if (isLowest) {
+        for (let c = 1; c <= 5; c++) {
+          row.getCell(c).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEE2E2' } };
         }
       } else if (pos === 1) {
         for (let c = 1; c <= 5; c++) {
@@ -478,16 +528,25 @@ async function exportQuizToExcel(state) {
       const sRow = roundSheet.getRow(rDataIdx);
       sRow.height = 20;
 
+      const isMinRow = lbl.includes('Laveste');
+
       const c1 = sRow.getCell(1);
       c1.value = lbl;
-      c1.font = { name: 'Arial', size: 9, bold: true };
+      c1.font = { name: 'Arial', size: 9, bold: true, color: isMinRow ? { argb: 'FF991B1B' } : undefined };
       c1.border = thinBorder;
-      c1.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF3F4F6' } };
+      c1.fill = { 
+        type: 'pattern', 
+        pattern: 'solid', 
+        fgColor: isMinRow ? { argb: 'FFFEE2E2' } : { argb: 'FFF3F4F6' } 
+      };
 
       const c2 = sRow.getCell(2);
       c2.value = val;
-      c2.font = { name: 'Arial', size: 9 };
+      c2.font = { name: 'Arial', size: 9, bold: isMinRow, color: isMinRow ? { argb: 'FF991B1B' } : undefined };
       c2.border = thinBorder;
+      if (isMinRow) {
+        c2.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEE2E2' } };
+      }
       roundSheet.mergeCells(rDataIdx, 2, rDataIdx, 3);
 
       rDataIdx++;

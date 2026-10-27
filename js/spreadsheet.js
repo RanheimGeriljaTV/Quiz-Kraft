@@ -357,23 +357,30 @@ function buildTableHtml(teamsList, startIndexOffset, roundCount, roundNames, las
   const allTeams = appState.teams || [];
   const highlightsEnabled = appState.showHighlights !== false;
 
-  // Beregn rundevinnere og hvilke runder som er påbegynt
+  // Beregn rundevinnere, dårligste/laveste runde og hvilke runder som er påbegynt
   const roundMaxScores = [];
+  const roundMinScores = [];
   const roundHasStarted = [];
 
   for (let r = 0; r < roundCount; r++) {
     let max = -Infinity;
+    let min = Infinity;
     let started = false;
+    let count = 0;
     allTeams.forEach(t => {
       if (t.active !== false) {
         const val = window.QuizScoring ? window.QuizScoring.parseScore(t.scores ? t.scores[r] : null) : null;
         if (val !== null) {
           started = true;
+          count++;
           if (val > max) max = val;
+          if (val < min) min = val;
         }
       }
     });
     roundMaxScores.push(max > 0 ? max : null);
+    // Uthev laveste score i runden hvis det er minst 2 distinkte poengsummer
+    roundMinScores.push(count > 1 && min < max ? min : null);
     roundHasStarted.push(started);
   }
 
@@ -485,23 +492,31 @@ function buildTableHtml(teamsList, startIndexOffset, roundCount, roundNames, las
         const parsed = window.QuizScoring ? window.QuizScoring.parseScore(rawScore) : null;
         const isHiddenFinal = isLastRoundHidden && r === lastPlayedIdx;
 
-        // Farge på rundevinner og manglende poeng
+        // Farge på rundevinner, dårligste/laveste score og manglende poeng
         const isWinner = highlightsEnabled && !isInactive && roundMaxScores[r] !== null && parsed !== null && parsed === roundMaxScores[r];
+        const isLowest = highlightsEnabled && !isInactive && roundMinScores[r] !== null && parsed !== null && parsed === roundMinScores[r];
         const isMissing = highlightsEnabled && !isInactive && roundHasStarted[r] && (rawScore === '' || rawScore === null || rawScore === undefined);
 
         let roundCellClass = 'col-round';
         if (isHiddenFinal) roundCellClass += ' col-round-hidden';
         else if (isWinner) roundCellClass += ' cell-round-winner';
+        else if (isLowest) roundCellClass += ' cell-round-lowest';
         else if (isMissing) roundCellClass += ' cell-missing-score';
 
+        const cellTitle = isWinner 
+          ? '🏆 Beste poengsum i ' + (roundNames[r] || 'runde ' + (r + 1)) 
+          : (isLowest 
+              ? '🔻 Laveste poengsum i ' + (roundNames[r] || 'runde ' + (r + 1)) 
+              : (isMissing ? '⚠️ Dette laget mangler poeng i ' + (roundNames[r] || 'runde ' + (r + 1)) : ''));
+
         html += `
-          <td class="${roundCellClass}" title="${isWinner ? '🏆 Beste poengsum i ' + (roundNames[r] || 'runde ' + (r + 1)) : (isMissing ? '⚠️ Dette laget mangler poeng i ' + (roundNames[r] || 'runde ' + (r + 1)) : '')}">
+          <td class="${roundCellClass}" title="${cellTitle}">
             ${isPres ? `
-              <span class="pres-score">${isHiddenFinal ? '❓' : (rawScore !== '' ? escapeHtml(rawScore) : '-')}</span>
+              <span class="pres-score ${isWinner ? 'pres-winner' : ''} ${isLowest ? 'pres-lowest' : ''}">${isHiddenFinal ? '❓' : (rawScore !== '' ? escapeHtml(rawScore) : '-')}</span>
             ` : `
               <input type="text" 
                      inputmode="decimal"
-                     class="score-input ${isWinner ? 'score-winner' : ''} ${isMissing ? 'score-missing' : ''}" 
+                     class="score-input ${isWinner ? 'score-winner' : ''} ${isLowest ? 'score-lowest' : ''} ${isMissing ? 'score-missing' : ''}" 
                      data-team-idx="${realIdx}" 
                      data-round-idx="${r}" 
                      value="${escapeHtml(rawScore)}" 
@@ -609,21 +624,27 @@ function updateRoundHighlights(container) {
   const highlightsEnabled = appState.showHighlights !== false;
 
   const roundMaxScores = [];
+  const roundMinScores = [];
   const roundHasStarted = [];
 
   for (let r = 0; r < roundCount; r++) {
     let max = -Infinity;
+    let min = Infinity;
     let started = false;
+    let count = 0;
     allTeams.forEach(t => {
       if (t.active !== false) {
         const val = window.QuizScoring ? window.QuizScoring.parseScore(t.scores ? t.scores[r] : null) : null;
         if (val !== null) {
           started = true;
+          count++;
           if (val > max) max = val;
+          if (val < min) min = val;
         }
       }
     });
     roundMaxScores.push(max > 0 ? max : null);
+    roundMinScores.push(count > 1 && min < max ? min : null);
     roundHasStarted.push(started);
   }
 
@@ -652,6 +673,7 @@ function updateRoundHighlights(container) {
       const parsed = window.QuizScoring ? window.QuizScoring.parseScore(rawScore) : null;
 
       const isWinner = highlightsEnabled && !isInactive && roundMaxScores[r] !== null && parsed !== null && parsed === roundMaxScores[r];
+      const isLowest = highlightsEnabled && !isInactive && roundMinScores[r] !== null && parsed !== null && parsed === roundMinScores[r];
       const isMissing = highlightsEnabled && !isInactive && roundHasStarted[r] && (rawScore === '' || rawScore === null || rawScore === undefined);
 
       const input = row.querySelector(`.score-input[data-round-idx="${r}"]`);
@@ -659,10 +681,14 @@ function updateRoundHighlights(container) {
         const td = input.closest('td.col-round');
         if (td) {
           td.classList.toggle('cell-round-winner', isWinner);
+          td.classList.toggle('cell-round-lowest', isLowest);
           td.classList.toggle('cell-missing-score', isMissing);
-          td.title = isWinner ? `🏆 Beste poengsum i runde ${r + 1}` : (isMissing ? `⚠️ Mangler poeng i runde ${r + 1}` : '');
+          td.title = isWinner 
+            ? `🏆 Beste poengsum i runde ${r + 1}` 
+            : (isLowest ? `🔻 Laveste poengsum i runde ${r + 1}` : (isMissing ? `⚠️ Mangler poeng i runde ${r + 1}` : ''));
         }
         input.classList.toggle('score-winner', isWinner);
+        input.classList.toggle('score-lowest', isLowest);
         input.classList.toggle('score-missing', isMissing);
         input.placeholder = isMissing ? 'Mangler' : '-';
       }

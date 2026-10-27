@@ -522,7 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               <div class="round-stat-row">
                 <span>Laveste score:</span>
-                <strong>${window.QuizScoring ? window.QuizScoring.formatScore(rw.minScore) : rw.minScore} p</strong>
+                <strong style="color: #dc2626;">${window.QuizScoring ? window.QuizScoring.formatScore(rw.minScore) : rw.minScore} p</strong>
               </div>
             ` : ''}
           </div>
