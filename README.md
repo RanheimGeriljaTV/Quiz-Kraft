@@ -20,15 +20,18 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 ### 1. ⚡ Lynraskt Oppsett & Poengføring
 - **Direkte valg av antall lag og runder:** Skriv inn ønsket antall (f.eks. `25` lag og `8` runder) direkte i tallfeltene øverst – tabellen tilpasser seg umiddelbart på ett sekund.
 - **Lagbank & Frammøte:** Har dere 21 lag den ene gangen og 18 neste gang? Hvert lag har en egen avkrysningsboks for oppmøte. Uaktive lag bevares trygt i banken, dimmes ned og **skjules automatisk fra storskjermen på projektor**.
-- **Farger på rundevinnere:** Laget med best poengsum i runden markeres automatisk med myk lysegrønn farge og krone (`👑`) på storskjerm.
-- **Farge på manglende poeng:** Celler som mangler poeng i en påbegynt runde markeres med gul stiplet ramme og "Mangler" slik at det er superlett å se hvem som gjenstår.
+- **Valgfri fargeutheving (🎨 Utheving):** Egen knapp for å slå av eller på fargekoding av rundevinnere og manglende poeng.
+- **Alfabetisk sortering (A–Å):** Trykk *"🔤 Sorter etter navn (A-Å)"* for å sortere aktive lag alfabetisk ved oppsett eller oppmøte.
+- **Tøm poeng (🧹):** Nullstill alle poeng raskt og trygt for neste runde eller ny omgang – lagnavn og oppmøte bevares.
 - **Smart tastaturnavigasjon:** Trykk `Enter` eller `Pil Ned` i en poengrute for å hoppe rett ned til neste lag i samme runde.
 - **Støtte for halvpoeng:** Både `8,5` og `8.5` aksepteres og formateres automatisk med norsk komma.
-- **Sanntidssummering:** Sammenlagt-kolonnen helt til høyre regnes ut umiddelbart ved hvert tastetrykk.
+- **Graderte farger på sammenlagtsum:** Varm og behagelig champagnegull-gradient nedover SUM-kolonnen som gir umiddelbar oversikt uten å gå på bekostning av lesbarhet.
 - **Angre-knapp (Undo):** Trykket du feil eller slettet et lag? Trykk *"Angre"* for å gå trygt tilbake.
 
 ### 2. 🖥️ Ren og Maksimert Fullskjerm (Projektor / Storskjerm)
 - **Regnearket maksimeres til 100 %:** I fullskjermvisning fjernes alle bunnlinjer, svevemenyer og fotnoter. Tabellen utnytter hele skjermhøyden og bredden på lerretet.
+- **Merknad-kolonne skjult på storskjerm:** Sparer over 150 piksler bredde slik at runder og lagnavn får maksimal plass. Eventuelle tie-breaker-merknader vises som en slank tag under lagnavnet.
+- **🏆 Finn vinner i fullskjerm:** Avslører siste runde automatisk dersom hemmelig finale (cliffhanger) var aktivert, sorterer poengene med tie-breaker og kårer vinneren direkte på storskjermen.
 - **Tekststørrelse på storskjerm:** Egne `A+` og `A-`-knapper i toppen av fullskjermen gjør det lett å tilpasse skriften til lerretet i lokalet.
 - **Minimalistisk styring:** Topplinjen har enkle snarveier for 2 kolonner (manuell styring), Topp 10, hemmelig finale og lukkeknapp (`✕ Lukk (Esc)`). Inaktive lag skjules helt.
 
@@ -37,9 +40,10 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 - **🏆 Toppliste-filtre:** Velg enkelt mellom *"Alle lag"*, *"Topp 10"* eller *"Topp 5"* for spennende avslutninger.
 - **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle bordene i salen får se plasseringen sin.
 
-### 4. 📊 Komplett Excel-ark (.xlsx) med Grafer & Formatering
-- **Alt i ett ark:** Alle lag, runder, sammenlagtsummer, tie-breakere og rundevinnere samles i én helhetlig, lekker poengtavle.
-- **Ekte formatering & Innebygd Graf:** Profesjonelle faste kantlinjer, fet skrift, marineblå tittelrad, grønne rundevinnere, gul sammenlagt-kolonne og et **innebygd linjediagram over poengutviklingen**. Kjøres 100 % lokalt via ExcelJS uten behov for internett.
+### 4. 📊 Komplett Excel-ark (.xlsx) med Akkumulert Stilling Runde for Runde
+- **Alt i ett ark:** Alle lag, runder, sammenlagtsummer, tie-breakere og rundevinnere samles i én helhetlig poengtavle.
+- **Runde for runde for alle lag:** Egen dedikert tabell i samme ark (*Stilling & Sammenlagt poengsum etter hver runde*) som viser eksakt hva hvert lag hadde etter runde 1, runde 2, runde 3 osv.
+- **Uten forvirrende grafer:** Tydelige, skarpe tall og faste kantlinjer som er 100 % lesbare for alle. Kjøres lokalt via ExcelJS uten internett.
 
 ### 5. ⏱️ Ekstra Verktøy for Quizmaster
 - **🤫 Hemmelig finale (Cliffhanger-modus):** Slå på *"Skjul siste runde"* for å maskere poengene i finalerunden med `❓` på storskjermen – slik at spenningen holdes helt til slutten.

@@ -3,6 +3,25 @@
 Alle vesentlige endringer i Quiz Kraft dokumenteres i denne filen.
 Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
+## [1.6.0] - 2026-10-27
+
+### Lagt til (feat)
+- **Av/på-bryter for sanntidsmarkering:** Ny knapp `🎨 Utheving: PÅ / AV` lar quizmaster fritt velge om fargefremheving av rundevinnere og manglende poeng skal vises eller holdes nøytral.
+- **Tøm poeng (Clear scores):** Egen `🧹 Tøm poeng`-knapp som nullstiller alle poengsummer med bekreftelse og full angremulighet (Undo), samtidig som lagnavn, antall runder og oppmøte forblir intakt.
+- **Sortering etter lagnavn (A–Å):** Ny knapp `🔤 Sorter etter navn (A-Å)` sorterer aktive lag alfabetisk med norsk bokstavrekkefølge.
+- **"Finn vinner"-knapp i Fullskjerm/Projektor:** Egen gullknapp `🏆 Finn vinner` i fullskjerm-topplinjen. Hvis siste runde var skjult i hemmelig finale (cliffhanger), avsløres den umiddelbart, poengene sorteres med tie-breaker og gullvinneren løftes til toppen av storskjermen.
+- **Graderte farger på sammenlagtsum:** En diskret og stilren champagne-til-grå varme-gradient på SUM-kolonnen som gjør det lekende lett å se poengnivået nedover listen, med 100 % kullsort tekst og maksimal kontrast (WCAG AAA).
+- **Excel med akkumulert stilling runde for runde (uten klumpete graf):**
+  - Fjernet den uoversiktlige linjegrafen som ble vanskelig å lese med tette poengsummer.
+  - Erstattet med en krystallklar tabell: **"Stilling & Sammenlagt poengsum etter hver runde"** som viser den eksakte poengsummen til alle lag etter hver eneste runde (Runde 1, Runde 2, osv.).
+  - Lagt til tilsvarende fane i webappens analysemodal for umiddelbar visning i nettleseren.
+
+### Forbedret (enhancement)
+- **Fjernet kongekronen på rundevinnere:** Fjernet krone-ikonet (`👑`) fra poengrutene slik at poengsummen vises rent og profesjonelt.
+- **Plassbesparende Merknad-kolonne:** Fjernet Merknad-kolonnen helt fra projektor/storskjermvisning og sparte over 150 piksler skjermbredde. Eventuelle tie-breaker-forklaringer vises som en elegant liten undertittel under lagnavnet. Gjort kolonnen betydelig slankere i redigeringsmodus.
+
+---
+
 ## [1.5.0] - 2026-10-27
 
 ### Lagt til (feat)
