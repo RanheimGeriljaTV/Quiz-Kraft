@@ -410,10 +410,10 @@ function buildTableHtml(teamsList, startIndexOffset, roundCount, roundNames, las
     `;
   }
 
-  // Sammenlagt og Merknad (Merknad skjules i presentasjonsmodus for å spare 180px lerretplass)
+  // Sammenlagt og Merknad
   html += `
           <th class="col-total" scope="col">SUM</th>
-          ${!isPres ? `<th class="col-note" scope="col">Merknad</th>` : ''}
+          <th class="col-note" scope="col">Merknad</th>
           ${!isPres ? `<th class="col-actions no-print" scope="col">Fjern</th>` : ''}
         </tr>
       </thead>
@@ -423,7 +423,7 @@ function buildTableHtml(teamsList, startIndexOffset, roundCount, roundNames, las
   if (teamsList.length === 0) {
     html += `
       <tr>
-        <td colspan="${roundCount + (isPres ? 3 : 5)}" class="empty-table-msg">
+        <td colspan="${roundCount + (isPres ? 4 : 5)}" class="empty-table-msg">
           Ingen lag i denne visningen.
         </td>
       </tr>
@@ -462,10 +462,7 @@ function buildTableHtml(teamsList, startIndexOffset, roundCount, roundNames, las
           </td>
           <td class="col-team">
             ${isPres ? `
-              <div class="pres-team-cell">
-                <span class="pres-team-name">${escapeHtml(team.name || 'Lag ' + (realIdx + 1))}</span>
-                ${team.tieBreakerNote ? `<span class="pres-tiebreaker-tag">${escapeHtml(team.tieBreakerNote)}</span>` : ''}
-              </div>
+              <span class="pres-team-name">${escapeHtml(team.name || 'Lag ' + (realIdx + 1))}</span>
             ` : `
               <div class="team-name-cell-wrap">
                 <label class="checkbox-attendance-wrap" title="${isInactive ? 'Klikk for å aktivere laget (deltar i kveld)' : 'Fjern hake hvis laget ikke deltar i kveld'}">
@@ -530,10 +527,10 @@ function buildTableHtml(teamsList, startIndexOffset, roundCount, roundNames, las
           <td class="col-total" style="${sumGradientStyle}">
             <span class="total-display" id="total-${realIdx}" aria-live="polite">${displayTotal}</span>
           </td>
+          <td class="col-note">
+            ${isInactive ? '<span class="note-inactive">Deltar ikke</span>' : (team.tieBreakerNote ? `<span class="tie-breaker-badge">${escapeHtml(team.tieBreakerNote)}</span>` : '<span class="note-empty">-</span>')}
+          </td>
           ${!isPres ? `
-            <td class="col-note">
-              ${isInactive ? '<span class="note-inactive">Deltar ikke</span>' : (team.tieBreakerNote ? `<span class="tie-breaker-badge">${escapeHtml(team.tieBreakerNote)}</span>` : '<span class="note-empty">-</span>')}
-            </td>
             <td class="col-actions no-print">
               <button type="button" class="btn-delete-team" data-team-idx="${realIdx}" title="Slett dette laget">Slett</button>
             </td>

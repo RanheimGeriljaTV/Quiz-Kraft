@@ -18,7 +18,7 @@ Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
 ### Forbedret (enhancement)
 - **Fjernet kongekronen på rundevinnere:** Fjernet krone-ikonet (`👑`) fra poengrutene slik at poengsummen vises rent og profesjonelt.
-- **Plassbesparende Merknad-kolonne:** Fjernet Merknad-kolonnen helt fra projektor/storskjermvisning og sparte over 150 piksler skjermbredde. Eventuelle tie-breaker-forklaringer vises som en elegant liten undertittel under lagnavnet. Gjort kolonnen betydelig slankere i redigeringsmodus.
+- **Balansert justering av Merknad-kolonnen:** Merknad beholdes som en standard kolonne både på fullskjerm og i redigering, med en balansert bredde (140px) som gir god plass til lagnavn og runder uten å forskyve tabellen mot høyre.
 
 ---
 

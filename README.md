@@ -30,7 +30,7 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 
 ### 2. 🖥️ Ren og Maksimert Fullskjerm (Projektor / Storskjerm)
 - **Regnearket maksimeres til 100 %:** I fullskjermvisning fjernes alle bunnlinjer, svevemenyer og fotnoter. Tabellen utnytter hele skjermhøyden og bredden på lerretet.
-- **Merknad-kolonne skjult på storskjerm:** Sparer over 150 piksler bredde slik at runder og lagnavn får maksimal plass. Eventuelle tie-breaker-merknader vises som en slank tag under lagnavnet.
+- **Balansert tabelloppsett:** Ryddig og velproporsjonert visning der alle lag og runder vises stabilt på lerretet uten forskyvninger.
 - **🏆 Finn vinner i fullskjerm:** Avslører siste runde automatisk dersom hemmelig finale (cliffhanger) var aktivert, sorterer poengene med tie-breaker og kårer vinneren direkte på storskjermen.
 - **Tekststørrelse på storskjerm:** Egne `A+` og `A-`-knapper i toppen av fullskjermen gjør det lett å tilpasse skriften til lerretet i lokalet.
 - **Minimalistisk styring:** Topplinjen har enkle snarveier for 2 kolonner (manuell styring), Topp 10, hemmelig finale og lukkeknapp (`✕ Lukk (Esc)`). Inaktive lag skjules helt.

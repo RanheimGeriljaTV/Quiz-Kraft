@@ -609,8 +609,8 @@ body.presentation-mode .presentation-header,
 }
 
 .col-total {
-  min-width: 100px;
-  width: 115px;
+  min-width: 110px;
+  width: 120px;
   text-align: center;
   background-color: var(--total-col-bg);
   color: var(--total-col-text);
@@ -623,12 +623,9 @@ body.dark-theme .col-total[style*="--dark-sum-bg"] {
 }
 
 .col-note {
-  min-width: 85px;
-  max-width: 120px;
-  width: 95px;
-  font-size: 0.78rem;
-  text-align: center;
-  padding: 0.2rem 0.35rem;
+  min-width: 140px;
+  width: 155px;
+  font-size: 0.85rem;
 }
 
 .col-actions {
@@ -830,30 +827,6 @@ body.dark-theme .team-row-inactive {
   color: #ffffff;
 }
 
-/* Presentasjonstilpasning for lagnavn og merknad */
-.pres-team-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0.15rem;
-}
-
-.pres-tiebreaker-tag {
-  display: inline-block;
-  background-color: #fef08a;
-  color: #854d0e;
-  border: 1px solid #eab308;
-  padding: 0.1rem 0.45rem;
-  border-radius: 4px;
-  font-size: 0.72rem;
-  font-weight: 800;
-}
-body.dark-theme .pres-tiebreaker-tag {
-  background-color: #713f12;
-  color: #fef08a;
-  border-color: #ca8a04;
-}
 
 /* Akkumulert stilling tabell i analyseboksen */
 .cumulative-table-wrap {
