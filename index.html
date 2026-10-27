@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interaktivt Quiz-regneark og poengtavle for Ranheim Kraft. Enkelt for alle, projektorvennlig, automatisk lagring og tie-breaker.">
+  <title>Quiz Kraft - Poengtavle og Regneark</title>
+  
+  <!-- CSS Stiler -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Toppseksjon med tittel og dato -->
+    <header class="header-bar">
+      <div class="title-group">
+        <input type="text" 
+               id="quiz-title-input" 
+               class="quiz-title-input" 
+               value="Ranheim Quiz" 
+               aria-label="Tittel på quizen" 
+               title="Klikk for å endre tittel på quizen" />
+        <input type="date" 
+               id="quiz-date-input" 
+               class="quiz-date-input" 
+               aria-label="Dato for quizen" 
+               title="Dato for quizen" />
+      </div>
+      
+      <!-- Hjelpetekst for visningsmodus -->
+      <div class="header-actions no-print">
+        <button type="button" id="btn-toggle-fullscreen" class="btn btn-neutral" title="Vis i fullskjerm på projektor eller storskjerm">
+          🖥️ Vis på fullskjerm (Projektor)
+        </button>
+      </div>
+    </header>
+
+    <!-- Trygghets-banner for automatisk lagring -->
+    <div class="status-banner" role="status" aria-live="polite">
+      <div class="status-left">
+        <span class="status-pulse" aria-hidden="true"></span>
+        <span id="storage-status-text">✅ Alt er lagret automatisk på denne maskinen</span>
+      </div>
+      <div class="status-right no-print">
+        <small id="storage-timestamp"></small>
+      </div>
+    </div>
+
+    <!-- Kontrollpanel / Knapperader -->
+    <nav class="toolbar-container no-print" aria-label="Handlinger for quizen">
+      
+      <!-- Hovedknapperad (Lag, Runder, Sortering) -->
+      <div class="btn-group-primary">
+        <button type="button" id="btn-add-team" class="btn btn-green">
+          ➕ Legg til nytt lag
+        </button>
+        <button type="button" id="btn-add-round" class="btn btn-blue">
+          ➕ Legg til ny runde
+        </button>
+        <button type="button" id="btn-sort-scores" class="btn btn-gold">
+          🏆 Sorter etter poeng (Finn vinner)
+        </button>
+        <button type="button" id="btn-undo" class="btn btn-undo" disabled>
+          ↩️ Angre siste endring
+        </button>
+      </div>
+
+      <!-- Sekundærknapperad (Tekststørrelse, Modus, Filer, Excel, Utskrift) -->
+      <div class="btn-group-secondary">
+        <button type="button" id="btn-font-larger" class="btn btn-outline" title="Gjør all tekst større">
+          <strong>A+</strong> Gjør teksten større
+        </button>
+        <button type="button" id="btn-font-smaller" class="btn btn-outline" title="Gjør all tekst mindre">
+          <strong>A-</strong> Gjør teksten mindre
+        </button>
+        <button type="button" id="btn-toggle-theme" class="btn btn-outline">
+          🌓 Bytt til mørk skjerm
+        </button>
+        <button type="button" id="btn-export-json" class="btn btn-outline" title="Last ned quiz-fil til PC-en for å fortsette hjemme">
+          💾 Lagre quizen på PC-en
+        </button>
+        <button type="button" id="btn-import-json" class="btn btn-outline" title="Hent opp tidligere lagret quiz-fil fra PC-en">
+          📂 Åpne lagret quiz
+        </button>
+        <input type="file" id="file-import-json" accept=".json" class="visually-hidden" aria-label="Velg quiz-fil fra datamaskin">
+        <button type="button" id="btn-export-excel" class="btn btn-outline" title="Last ned en ekte Excel-fil (.xlsx) som kan åpnes i Excel">
+          📊 Last ned til Excel (.xlsx)
+        </button>
+        <button type="button" id="btn-print-table" class="btn btn-outline" title="Skriv ut en ren A4-poengtavle eller lag PDF">
+          🖨️ Skriv ut på papir / Lag PDF
+        </button>
+        <button type="button" id="btn-reset-quiz" class="btn btn-outline" title="Start en ny quiz fra bunnen av">
+          🔄 Start helt ny quiz
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hovedvisning: Regneark Tabell -->
+    <main>
+      <div id="spreadsheet-container" class="spreadsheet-wrapper" role="region" aria-label="Regneark poengoversikt">
+        <!-- Genereres dynamisk av spreadsheet.js -->
+      </div>
+    </main>
+
+    <!-- Hjelp og veiledning for hurtig inntasting -->
+    <footer class="info-footer no-print">
+      <h3>💡 Enkle tips for lynrask inntasting:</h3>
+      <ul>
+        <li><strong>Rask poengføring nedover:</strong> Skriv inn poeng for et lag og trykk <kbd>Enter</kbd> eller <kbd>Pil Ned</kbd> for å hoppe rett ned til neste lag i samme runde.</li>
+        <li><strong>Halvpoeng:</strong> Både komma og punktum fungerer helt likt (f.eks. <code>8,5</code> og <code>8.5</code>).</li>
+        <li><strong>Tie-breaker:</strong> Ved poenglikhet rangerer knappen <em>"Sorter etter poeng"</em> laget med flest poeng i siste spilte runde først.</li>
+        <li><strong>Jobbe videre hjemme:</strong> Trykk <em>"Lagre quizen på PC-en"</em> for å få en fil du kan ta med deg og åpne på din egen maskin med <em>"Åpne lagret quiz"</em>.</li>
+        <li><strong>Fungerer uten internett:</strong> Denne appen og Excel-nedlasting fungerer 100 % frakoblet på en bærbar PC.</li>
+      </ul>
+    </footer>
+
+  </div>
+
+  <!-- Skript og biblioteker (100 % lokalt og offline) -->
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/excel-export.js"></script>
+  <script src="js/spreadsheet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

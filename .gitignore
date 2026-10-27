@@ -1,0 +1,15 @@
+# Systemfiler
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Lokale miljøvariabler og hemmeligheter
+.env
+.env.local
+*.log
+
+# Editor og IDE-mapper
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
