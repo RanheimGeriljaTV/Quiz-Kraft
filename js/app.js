@@ -346,14 +346,13 @@ document.addEventListener('DOMContentLoaded', () => {
     updateClockDisplays();
   }
 
-  // Syntetiser et behagelig digitalt varselpip via Web Audio API (ingen eksterne filer nødvendig)
   function playChime() {
     try {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       if (!AudioContext) return;
       const ctx = new AudioContext();
       
-      const freqs = [587.33, 880, 1174.66]; // D5, A5, D6 akkord
+      const freqs = [587.33, 880, 1174.66];
       freqs.forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -399,6 +398,151 @@ document.addEventListener('DOMContentLoaded', () => {
       resetTimer();
     });
   });
+
+  // 12B. RUNDE-ANALYSE OG GRAFER
+  const modalAnalysis = document.getElementById('quiz-analysis-modal');
+  const btnOpenAnalysis = document.getElementById('btn-open-analysis');
+  const presBtnAnalysis = document.getElementById('pres-btn-analysis');
+  const btnAnalysisClose = document.getElementById('btn-analysis-close');
+  const tabBtnWinners = document.getElementById('tab-btn-winners');
+  const tabBtnGraph = document.getElementById('tab-btn-graph');
+  const contentWinners = document.getElementById('analysis-content-winners');
+  const contentGraph = document.getElementById('analysis-content-graph');
+  const chartCanvas = document.getElementById('quiz-chart-canvas');
+  const btnChartModeCumulative = document.getElementById('btn-chart-mode-cumulative');
+  const btnChartModePerRound = document.getElementById('btn-chart-mode-per-round');
+  const btnAnalysisDownloadExcel = document.getElementById('btn-analysis-download-excel');
+
+  let currentChartMode = 'cumulative';
+
+  function openAnalysisModal() {
+    if (!modalAnalysis) return;
+    populateAnalysisData();
+    modalAnalysis.style.display = 'flex';
+    switchAnalysisTab('winners');
+  }
+
+  function closeAnalysisModal() {
+    if (modalAnalysis) modalAnalysis.style.display = 'none';
+  }
+
+  function switchAnalysisTab(tab) {
+    if (tab === 'winners') {
+      tabBtnWinners.classList.add('active');
+      tabBtnGraph.classList.remove('active');
+      contentWinners.style.display = 'block';
+      contentGraph.style.display = 'none';
+    } else {
+      tabBtnWinners.classList.remove('active');
+      tabBtnGraph.classList.add('active');
+      contentWinners.style.display = 'none';
+      contentGraph.style.display = 'block';
+      setTimeout(renderAnalysisChart, 50);
+    }
+  }
+
+  function populateAnalysisData() {
+    if (!window.QuizRoundAnalysis) return;
+    const roundWinners = window.QuizRoundAnalysis.getRoundWinners(state.teams, state.roundCount, state.roundNames);
+    const tally = window.QuizRoundAnalysis.getTeamWinsTally(state.teams, roundWinners);
+
+    // 1. Bygg kort for hver runde
+    const cardsContainer = document.getElementById('round-winners-cards');
+    if (cardsContainer) {
+      let cardsHtml = '';
+      roundWinners.forEach(rw => {
+        const winnerNames = rw.winners.map(w => w.name).join(', ') || 'Ingen poeng ført ennå';
+        const scoreText = rw.hasScores ? `🏆 ${window.QuizScoring ? window.QuizScoring.formatScore(rw.maxScore) : rw.maxScore} poeng` : '-';
+
+        cardsHtml += `
+          <div class="round-card">
+            <div class="round-card-header">
+              <span>${rw.roundTitle}</span>
+              <span>${scoreText}</span>
+            </div>
+            <div class="round-winner-name">
+              ${rw.hasScores ? `🥇 ${winnerNames}` : '<span style="color:#888; font-size:1rem; font-weight:normal;">Ikke spilt</span>'}
+            </div>
+            ${rw.hasScores ? `
+              <div class="round-stat-row">
+                <span>Gjennomsnitt:</span>
+                <strong>${window.QuizScoring ? window.QuizScoring.formatScore(rw.avgScore) : rw.avgScore} p</strong>
+              </div>
+              <div class="round-stat-row">
+                <span>Laveste score:</span>
+                <strong>${window.QuizScoring ? window.QuizScoring.formatScore(rw.minScore) : rw.minScore} p</strong>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      });
+      cardsContainer.innerHTML = cardsHtml;
+    }
+
+    // 2. Bygg liste for flest seiere
+    const tallyContainer = document.getElementById('round-tally-list');
+    if (tallyContainer) {
+      let tallyHtml = '';
+      tally.slice(0, 10).forEach((t, idx) => {
+        let badgeIcon = idx === 0 && t.wins > 0 ? '👑 ' : '';
+        tallyHtml += `
+          <div class="tally-item">
+            <span>${idx + 1}. ${badgeIcon}<strong>${t.name}</strong></span>
+            <div>
+              <span class="tally-badge">${t.wins} rundeseier${t.wins === 1 ? '' : 'e'}</span>
+              <small style="color:var(--text-muted); margin-left: 0.5rem;">(Beste: ${window.QuizScoring ? window.QuizScoring.formatScore(t.bestScore) : t.bestScore} p)</small>
+            </div>
+          </div>
+        `;
+      });
+      tallyContainer.innerHTML = tallyHtml;
+    }
+  }
+
+  function renderAnalysisChart() {
+    if (chartCanvas && window.QuizRoundAnalysis) {
+      window.QuizRoundAnalysis.drawQuizChart(
+        chartCanvas,
+        state.teams,
+        state.roundCount,
+        state.roundNames,
+        currentChartMode
+      );
+    }
+  }
+
+  if (btnOpenAnalysis) btnOpenAnalysis.addEventListener('click', openAnalysisModal);
+  if (presBtnAnalysis) presBtnAnalysis.addEventListener('click', openAnalysisModal);
+  if (btnAnalysisClose) btnAnalysisClose.addEventListener('click', closeAnalysisModal);
+
+  if (tabBtnWinners) tabBtnWinners.addEventListener('click', () => switchAnalysisTab('winners'));
+  if (tabBtnGraph) tabBtnGraph.addEventListener('click', () => switchAnalysisTab('graph'));
+
+  if (btnChartModeCumulative) {
+    btnChartModeCumulative.addEventListener('click', () => {
+      currentChartMode = 'cumulative';
+      btnChartModeCumulative.classList.add('active');
+      btnChartModePerRound.classList.remove('active');
+      renderAnalysisChart();
+    });
+  }
+
+  if (btnChartModePerRound) {
+    btnChartModePerRound.addEventListener('click', () => {
+      currentChartMode = 'per_round';
+      btnChartModePerRound.classList.add('active');
+      btnChartModeCumulative.classList.remove('active');
+      renderAnalysisChart();
+    });
+  }
+
+  if (btnAnalysisDownloadExcel) {
+    btnAnalysisDownloadExcel.addEventListener('click', () => {
+      if (window.QuizExcelExport) {
+        window.QuizExcelExport.exportQuizToExcel(state);
+      }
+    });
+  }
 
   // 13. TEKSTSTØRRELSE-SKALERING (A+ / A-)
   const fontSteps = [15, 18, 22, 26, 30, 35];

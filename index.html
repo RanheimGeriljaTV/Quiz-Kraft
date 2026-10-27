@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interaktivt Quiz-regneark og poengtavle for Ranheim Kraft. Enkelt for alle, projektorvennlig, automatisk lagring og tie-breaker.">
+  <meta name="description" content="Interaktivt Quiz-regneark og poengtavle for Ranheim Kraft. Enkelt for alle, projektorvennlig, automatisk lagring, rundevinnere og grafer.">
   <title>Quiz Kraft - Poengtavle og Regneark</title>
   
   <!-- CSS Stiler -->
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <!-- Diskret svevende kontroll-linje i Fullskjerm (vises ved musebevegelse, fader ut ved ro) -->
+    <!-- Diskret svevende kontroll-linje i Fullskjerm -->
     <div id="presentation-floating-bar" class="presentation-floating-bar">
       <div class="pres-control-group">
         <button type="button" class="pres-btn" id="pres-btn-filter-all" title="Vis alle lag">👥 Alle lag</button>
@@ -34,6 +34,7 @@
         <button type="button" class="pres-btn" id="pres-btn-toggle-2col" title="Bytt mellom 1 og 2 kolonner på lerretet">🔲 2 Kolonner</button>
         <button type="button" class="pres-btn" id="pres-btn-carousel" title="Start/Stopp automatisk sideveksling">▶️ Karusell</button>
         <button type="button" class="pres-btn" id="pres-btn-cliffhanger" title="Skjul siste runde på storskjerm">🤫 Hemmelig finale</button>
+        <button type="button" class="pres-btn" id="pres-btn-analysis" title="Se hvem som vant hver runde og se graf">📈 Runde-analyse</button>
         <button type="button" class="pres-btn" id="pres-btn-timer" title="Åpne nedtellingstimer">⏱️ Timer</button>
       </div>
       <div class="pres-control-group">
@@ -91,6 +92,9 @@
         <button type="button" id="btn-sort-scores" class="btn btn-gold">
           🏆 Sorter etter poeng (Finn vinner 🎉)
         </button>
+        <button type="button" id="btn-open-analysis" class="btn btn-blue" title="Gå igjennom runde for runde hvem som var best, og se grafer">
+          📈 Rundeanalyse & Grafer
+        </button>
         <button type="button" id="btn-undo" class="btn btn-undo" disabled>
           ↩️ Angre siste endring
         </button>
@@ -126,7 +130,7 @@
           📂 Åpne lagret quiz
         </button>
         <input type="file" id="file-import-json" accept=".json" class="visually-hidden" aria-label="Velg quiz-fil fra datamaskin">
-        <button type="button" id="btn-export-excel" class="btn btn-outline" title="Last ned en ekte Excel-fil (.xlsx)">
+        <button type="button" id="btn-export-excel" class="btn btn-outline" title="Last ned en komplett Excel-fil (.xlsx) med rundevinnere og grafdata">
           📊 Last ned til Excel (.xlsx)
         </button>
         <button type="button" id="btn-print-table" class="btn btn-outline" title="Skriv ut en ren A4-poengtavle eller lag PDF">
@@ -138,8 +142,15 @@
       </div>
     </nav>
 
+    <!-- Hovedvisning: Regneark Tabell -->
+    <main>
+      <div id="spreadsheet-container" class="spreadsheet-wrapper" role="region" aria-label="Regneark poengoversikt">
+        <!-- Genereres dynamisk av spreadsheet.js -->
+      </div>
+    </main>
+
     <!-- Quiz-Timer dialog / popup -->
-    <div id="quiz-timer-modal" class="timer-modal" style="display: none;">
+    <div id="quiz-timer-modal" class="modal-overlay" style="display: none;">
       <div class="timer-box">
         <h3>⏱️ Quiz Nedtellingstimer</h3>
         <div class="timer-clock-large" id="modal-timer-clock">05:00</div>
@@ -155,25 +166,66 @@
           <button type="button" class="btn-preset active" data-min="5">5 min</button>
           <button type="button" class="btn-preset" data-min="10">10 min</button>
         </div>
-        <button type="button" class="btn-close-timer" id="btn-timer-close">✕ Lukk</button>
+        <button type="button" class="btn-close-modal" id="btn-timer-close">✕ Lukk</button>
       </div>
     </div>
 
-    <!-- Hovedvisning: Regneark Tabell -->
-    <main>
-      <div id="spreadsheet-container" class="spreadsheet-wrapper" role="region" aria-label="Regneark poengoversikt">
-        <!-- Genereres dynamisk av spreadsheet.js -->
+    <!-- RUNDE-ANALYSE & GRAFER DIALOG / POPUP -->
+    <div id="quiz-analysis-modal" class="modal-overlay" style="display: none;">
+      <div class="analysis-box">
+        <div class="analysis-header">
+          <h2>📈 Runde-analyse & Graf over poengutvikling</h2>
+          <button type="button" class="btn-close-modal" id="btn-analysis-close">✕ Lukk</button>
+        </div>
+
+        <div class="analysis-tabs">
+          <button type="button" class="analysis-tab-btn active" id="tab-btn-winners">🏆 Hvem var best i hver runde?</button>
+          <button type="button" class="analysis-tab-btn" id="tab-btn-graph">📊 Interaktiv Graf (Utvikling)</button>
+        </div>
+
+        <!-- Fane 1: Rundevinnere -->
+        <div id="analysis-content-winners" class="analysis-tab-content">
+          <h3>🎖️ Rundens beste lag (Runde for runde):</h3>
+          <div id="round-winners-cards" class="round-cards-grid">
+            <!-- Fylles dynamisk -->
+          </div>
+
+          <div class="tally-section">
+            <h3>🥇 Lag med flest rundeseiere:</h3>
+            <div id="round-tally-list" class="tally-list">
+              <!-- Fylles dynamisk -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Fane 2: Graf -->
+        <div id="analysis-content-graph" class="analysis-tab-content" style="display: none;">
+          <div class="chart-controls-bar">
+            <span>Visning:</span>
+            <button type="button" class="btn btn-chip active" id="btn-chart-mode-cumulative">Akkumulert (Sammenlagt)</button>
+            <button type="button" class="btn btn-chip" id="btn-chart-mode-per-round">Poeng per runde</button>
+          </div>
+          <div class="chart-canvas-container">
+            <canvas id="quiz-chart-canvas"></canvas>
+          </div>
+          <p class="chart-hint">💡 <em>Fargede linjer viser poengutviklingen for hvert lag. Denne grafen og alle rådataene kan også lastes ned som ekte Excel-bok via "Last ned til Excel".</em></p>
+        </div>
+
+        <div class="analysis-footer">
+          <button type="button" id="btn-analysis-download-excel" class="btn btn-green">
+            📊 Last ned komplett Excel-ark (.xlsx) med disse analysene
+          </button>
+        </div>
       </div>
-    </main>
+    </div>
 
     <!-- Hjelp og veiledning for hurtig inntasting -->
     <footer class="info-footer no-presentation no-print">
       <h3>💡 Enkle tips for quizmaster:</h3>
       <ul>
-        <li><strong>Storskjerm for mange lag:</strong> Hvis det er med 20–25 lag, bruk <em>"2 Kolonner"</em>, <em>"Topp 10"</em> eller <em>"Rullerende visning"</em> slik at alt blir krystallklart på lerretet!</li>
-        <li><strong>Rask poengføring:</strong> Trykk <kbd>Enter</kbd> eller <kbd>Pil Ned</kbd> for å hoppe rett ned til neste lag i samme runde.</li>
-        <li><strong>Hemmelig finale:</strong> Slå på <em>"Skjul siste runde"</em> før finalen for å bygge opp maksimal spenning i salen før vinneren avsløres!</li>
-        <li><strong>Uten internett:</strong> Alt fungerer 100 % lokalt, inkludert lagring og Excel-nedlasting.</li>
+        <li><strong>Runde-analyse:</strong> Trykk på <em>"Rundeanalyse & Grafer"</em> for å gå igjennom runde for runde hvem som var best, og se linjediagram over utviklingen!</li>
+        <li><strong>Excel med analyse og grafer:</strong> Knappen <em>"Last ned til Excel"</em> produserer automatisk tre ferdige ark: Sammenlagt, Rundevinnere og Rundeutvikling klargjort for Excels diagrammer.</li>
+        <li><strong>Storskjerm for mange lag:</strong> Hvis det er med 20–25 lag, bruk <em>"2 Kolonner"</em> eller <em>"Rullerende visning"</em> på projektoren.</li>
       </ul>
     </footer>
 
@@ -183,6 +235,7 @@
   <script src="vendor/xlsx.full.min.js"></script>
   <script src="js/confetti.js"></script>
   <script src="js/scoring.js"></script>
+  <script src="js/round-analysis.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/excel-export.js"></script>
   <script src="js/spreadsheet.js"></script>

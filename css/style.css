@@ -798,9 +798,9 @@ body.dark-theme .score-input:focus {
 }
 
 /* =========================================
-   TIMER MODAL
+   MODALER (TIMER & RUNDE-ANALYSE)
    ========================================= */
-.timer-modal {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -812,6 +812,7 @@ body.dark-theme .score-input:focus {
   justify-content: center;
   z-index: 20000;
   backdrop-filter: blur(4px);
+  padding: 1rem;
 }
 
 .timer-box {
@@ -871,15 +872,192 @@ body.dark-theme .score-input:focus {
   border-color: #1e3a8a;
 }
 
-.btn-close-timer {
+.btn-close-modal {
   background: transparent;
   border: 2px solid var(--border-cell);
   border-radius: 8px;
-  padding: 0.5rem 1.5rem;
+  padding: 0.4rem 1.2rem;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   color: var(--text-main);
+  transition: all 0.15s ease;
+}
+.btn-close-modal:hover {
+  background-color: var(--th-bg);
+}
+
+/* RUNDE-ANALYSE BOKS */
+.analysis-box {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  border: 3px solid var(--border-strong);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  max-width: 950px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+}
+
+.analysis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.analysis-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.analysis-tabs {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: 0.6rem;
+}
+
+.analysis-tab-btn {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-cell);
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.analysis-tab-btn.active {
+  background-color: var(--btn-gold);
+  color: #ffffff;
+  border-color: #78350f;
+}
+
+.analysis-tab-content h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.25rem;
+}
+
+/* RUNDEVINNER-KORT */
+.round-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.round-card {
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-cell);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.round-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 900;
+  font-size: 1.15rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.round-winner-name {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--btn-gold);
+  margin-bottom: 0.4rem;
+}
+
+.round-stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+/* TALLY LISTE (Mestvinnende lag) */
+.tally-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tally-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-cell);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+}
+
+.tally-badge {
+  background-color: var(--btn-gold);
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+/* GRAFVISNING */
+.chart-controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.chart-canvas-container {
+  background-color: #ffffff;
+  border: 2px solid var(--border-cell);
+  border-radius: 10px;
+  padding: 1rem;
+  width: 100%;
+  height: 420px;
+  box-sizing: border-box;
+}
+
+body.dark-theme .chart-canvas-container {
+  background-color: #1e1e1e;
+}
+
+#quiz-chart-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chart-hint {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 0.8rem;
+}
+
+.analysis-footer {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border-light);
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Info footer */
