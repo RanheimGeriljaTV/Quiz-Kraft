@@ -41,7 +41,8 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 - **🤫 Hemmelig finale (Cliffhanger-modus):** Slå på *"Skjul siste runde"* for å maskere poengene i finalerunden med `❓` på storskjermen – slik at ingen vet hvem som vant før quizmaster utroper det!
 - **⏱️ Quiz-Timer:** Stor digital stoppeklokke for nedtelling (1 min, 3 min, 5 min, 10 min) med et behagelig digitalt lydsignal når tiden er ute.
 
-### 5. ⚡ Lynrask Poengføring
+### 5. ⚡ Lynrask Poengføring & Oppsett
+- **Direkte valg av antall lag og runder:** Skriv inn ønsket antall (f.eks. `25` lag og `8` runder) direkte i tallfeltene øverst – tabellen tilpasser seg umiddelbart!
 - **Smart tastaturnavigasjon:** Trykk `Enter` eller `Pil Ned` i en poengrute for å hoppe rett ned til neste lag i samme runde.
 - **Støtte for halvpoeng:** Både `8,5` og `8.5` aksepteres og formateres automatisk med norsk komma.
 - **Sanntidssummering:** Sammenlagt-kolonnen helt til høyre regnes ut umiddelbart ved hvert tastetrykk.

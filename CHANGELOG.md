@@ -3,6 +3,22 @@
 Alle vesentlige endringer i Quiz Kraft dokumenteres i denne filen.
 Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
+## [1.3.0] - 2026-10-27
+
+### Forbedret (enhancement)
+- **Kompakt og balansert design:**
+  - Redusert standard skriftstørrelse fra 18px til en behagelig og profesjonell 15px.
+  - Skalert ned knapper fra 48px til en moderne, slank 34px høyde med kompakt polstring.
+  - Gjort tabellceller, inndatafelt og sammenlagtkolonnen slankere og mer plasseffektive.
+- **Direkte inntasting av antall lag og runder:**
+  - Lagt til egne tallfelter (`Antall lag: [ 5 ]` og `Antall runder: [ 5 ]`) i verktøylinjen slik at man kan opprette f.eks. 20 lag eller 8 runder på sekunder ved å bare skrive tallet.
+- **Slankere kontrollboks i fullskjerm:**
+  - Gjort den svevende kontroll-linjen i fullskjerm betydelig mindre, tynnere og mer diskret med kortfattede etiketter.
+- **Ren fullskjerm uten forstyrrelser:**
+  - Streng fjerning av all bunntekst, eksterne elementer eller Vipps-bokser fra nettsiden når fullskjerm er aktiv.
+
+---
+
 ## [1.2.1] - 2026-10-27
 
 ### Fikset (fix)
