@@ -24,24 +24,18 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 - **Sanntidssummering:** Sammenlagt-kolonnen helt til høyre regnes ut umiddelbart ved hvert tastetrykk.
 - **Angre-knapp (Undo):** Trykket du feil eller slettet et lag? Trykk *"Angre"* for å gå trygt tilbake.
 
-### 2. 🖥️ Ren Presentasjonsmodus for Projektor / Storskjerm
-- **Ingen knapper eller menyer for publikum:** Når du trykker **"Vis på fullskjerm (Projektor)"**, fjernes alle administrasjonsknapper, menyer og bunnelementer helt. Salen ser kun den lekre stadion-poengtavlen.
-- **Diskret svevemeny for quizmaster:** En slank, kompakt kontroll-linje nederst gir rask tilgang til visninger og toner automatisk bort når musen står i ro.
-- **🎉 Vinner-feiring:** Trykk på *"Sorter etter poeng"* for å kåre vinneren med et festlig konfetti-dryss!
+### 2. 🖥️ Ren og Maksimert Fullskjerm (Projektor / Storskjerm)
+- **Regnearket maksimeres til 100 %:** I fullskjermvisning fjernes alle bunnlinjer, svevemenyer og fotnoter. Tabellen utnytter hele skjermhøyden og bredden på lerretet.
+- **Minimalistisk styring:** Topplinjen har enkle snarveier for 2 kolonner, Topp 10, hemmelig finale og lukkeknapp (`✕ Lukk (Esc)`).
 
 ### 3. 👥 Perfekt Visning for Mange Lag (15–30+ lag)
 - **🔲 2-Kolonner Side-om-Side:** Deler tabellen i to parallelle lister slik at opptil 25–30 lag får plass på et standard 16:9-lerret uten behov for rulling.
 - **🏆 Toppliste-filtre:** Velg enkelt mellom *"Alle lag"*, *"Topp 10"* eller *"Topp 5"* for spennende avslutninger.
 - **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle bordene i salen får se plasseringen sin.
 
-### 4. 🎖️ Runde for Runde: Hvem var best i hver runde?
-- **Rundevinnere:** Egen analysevisning som kårer vinneren av hver enkelt runde med pokal, vinnende poengsum og rundesnitt.
-- **Flest rundeseiere:** Sammenlagtoversikt over hvilke lag som har stukket av med flest rundeseire.
-- **Interaktiv Graf i nettleseren:** Innebygd linjediagram som viser lagenes poengutvikling runde for runde (både akkumulert og per runde).
-- **Ekte Excel (.xlsx) med 3 ark:**
-  1. *Sammenlagt:* Hovedtabellen med plassering, poeng og merknader.
-  2. *Rundevinnere:* Hvem som vant hver runde, snitt og flest seiere.
-  3. *Rundeutvikling (Grafdata):* Ferdig oppsatt datatabell klargjort for Excels innebygde linjediagrammer ("Sett inn linjediagram").
+### 4. 📊 Stilrent Excel-ark (.xlsx) i ett samlet bilde
+- **Alt i ett ark:** Alle lag, runder, sammenlagtsummer, tie-breakere og rundevinnere samles i én helhetlig, lekker poengtavle.
+- **Ekte formatering:** Profesjonelle faste kantlinjer, fet skrift, marineblå tittelrad og gul sammenlagt-kolonne. Kjøres 100 % lokalt via ExcelJS.
 
 ### 5. ⏱️ Ekstra Verktøy for Quizmaster
 - **🤫 Hemmelig finale (Cliffhanger-modus):** Slå på *"Skjul siste runde"* for å maskere poengene i finalerunden med `❓` på storskjermen – slik at spenningen holdes helt til slutten.
@@ -96,10 +90,9 @@ Quiz Kraft/
 │   ├── scoring.js          # Desimaltolking, sanntidssummer og tie-breaker
 │   ├── round-analysis.js   # Analyse av rundevinnere og interaktiv graf (Canvas)
 │   ├── storage.js          # localStorage, fil-import/eksport og angrefunksjon
-│   ├── excel-export.js     # Generering av .xlsx-arbeidsbok med 3 ark
-│   └── confetti.js         # Lettvekts vinnerkonfetti-animasjon
+│   └── excel-export.js     # Generering av formatert .xlsx med kantlinjer og farger
 ├── vendor/
-│   └── xlsx.full.min.js    # SheetJS for 100 % offline Excel-eksport
+│   └── exceljs.min.js      # ExcelJS for 100 % offline formatert Excel-eksport
 ├── .gitignore              # Git ignore-regler
 ├── CHANGELOG.md            # Versjonslogg
 └── README.md               # Denne dokumentasjonen

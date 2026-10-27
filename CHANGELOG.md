@@ -3,6 +3,21 @@
 Alle vesentlige endringer i Quiz Kraft dokumenteres i denne filen.
 Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
+## [1.4.0] - 2026-10-27
+
+### Forbedret (enhancement)
+- **Stilrent og helhetlig Excel-ark med kantlinjer og fet skrift:**
+  - Byttet til ExcelJS for å generere ekte, vakre `.xlsx`-ark med faste kantlinjer, marineblå tittel, uthevede topplag og gul sammenlagt-kolonne.
+  - Samlet poeng runde for runde for alle lag og rundestatistikk (vinnere, snitt, bunnscore) i **ett samlet, ryddig ark**.
+- **Plassbesparende topplinje:**
+  - Fjernet den unødvendige fullbredde-tekstlinjen for automatisk lagring. Lagringsstatusen vises nå som et elegant lite merke (`✅ Lagret`) rett ved datoen i topplinjen.
+- **Fjernet konfetti:**
+  - Fjernet ressurskrevende konfettianimasjon for lynrask og lettvekts ytelse.
+- **Maksimal utnyttelse av fullskjerm:**
+  - Fjernet bunnlinjer, svevemenyer og fotnoter i fullskjerm. Tabellen strekkes nå til å fylle 100 % av skjermhøyden på projektor og lerret, med en minimalistisk lukkeknapp (`✕ Lukk`) i toppen.
+
+---
+
 ## [1.3.0] - 2026-10-27
 
 ### Forbedret (enhancement)
