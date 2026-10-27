@@ -234,7 +234,7 @@ body.presentation-mode .presentation-header,
 
 .quiz-table-presentation th,
 .quiz-table-presentation td {
-  padding: 0.5rem 0.65rem;
+  padding: 0.35rem 0.55rem;
 }
 
 .pres-team-name {
@@ -579,7 +579,7 @@ body.presentation-mode .presentation-header,
 .quiz-table th,
 .quiz-table td {
   border: 1.5px solid var(--border-cell);
-  padding: 0.35rem 0.5rem;
+  padding: 0.22rem 0.45rem;
   vertical-align: middle;
 }
 
@@ -677,7 +677,7 @@ body.dark-theme .col-total[style*="--dark-sum-bg"] {
   width: 100%;
   font-size: 0.95rem;
   font-weight: 700;
-  padding: 0.3rem 0.45rem;
+  padding: 0.2rem 0.4rem;
   border: 1.5px solid var(--border-cell);
   border-radius: 4px;
   background-color: var(--input-bg);
@@ -689,7 +689,7 @@ body.dark-theme .col-total[style*="--dark-sum-bg"] {
   text-align: center;
   font-size: 1.05rem;
   font-weight: 700;
-  padding: 0.28rem 0.2rem;
+  padding: 0.18rem 0.2rem;
   border: 1.5px solid var(--border-cell);
   border-radius: 4px;
   background-color: var(--input-bg);

@@ -40,11 +40,12 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 - **🏆 Toppliste-filtre:** Velg enkelt mellom *"Alle lag"*, *"Topp 10"* eller *"Topp 5"* for spennende avslutninger.
 - **▶️ Rullerende Karusell:** Veksler automatisk mellom sider (f.eks. Side 1: Lag 1–12, Side 2: Lag 13–25) hvert 8. sekund, slik at alle bordene i salen får se plasseringen sin.
 
-### 4. 📊 Komplett Excel-arbeidsbok (.xlsx) med 4 egne ark
-- **Ark 1 – Hovedoversikt:** Fullstendig poengtavle med alle runder, sammenlagtsummer, pallfarger og rundevinnere.
-- **Ark 2 – Runde for runde:** Hver enkelt rundes fulle poengsummer for alle lag, sortert etter hvem som var best i akkurat den runden.
-- **Ark 3 – Akkumulert stilling:** Løpende sammenlagt poengsum etter hver runde (etter R1, R2, R3 osv.).
-- **Ark 4 – Rundestatistikk:** Ledertavle over mestvinnende lag og nøkkeltall per runde.
+### 4. 📊 Komplett Excel-arbeidsbok (.xlsx) med egne ark per runde
+- **Ark "Sammenlagt":** Fullstendig poengtavle med alle runder, sammenlagtsummer, pallfarger og rundevinnere.
+- **Egne ark for hver runde ("Runde 1", "Runde 2", osv.):** Samtlige deltakende lag listes sortert fra høyeste til laveste poengsum for akkurat den runden, med differanse til vinneren og egen statistikkboks (høyeste score, snitt, laveste, antall lag).
+- **Ark "Akkumulert stilling":** Løpende sammenlagt poengsum etter hver runde (etter R1, R2, R3 osv.).
+- **Ark "Mestvinnende":** Ledertavle over flest rundeseiere og nøkkeltall per runde.
+- **Synlige arkfaner i Excel:** Sikret med eksplisitt fanelinje-visning slik at alle arkene er umiddelbart tilgjengelige i Microsoft Excel.
 - **100 % Frakoblet via ExcelJS:** Faste kantlinjer, fet skrift og profesjonell formatering uten behov for internett.
 
 ### 5. ⏱️ Ekstra Verktøy for Quizmaster

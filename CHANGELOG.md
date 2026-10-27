@@ -3,6 +3,24 @@
 Alle vesentlige endringer i Quiz Kraft dokumenteres i denne filen.
 Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
+## [1.7.0] - 2026-10-27
+
+### Lagt til (feat)
+- **Dedikerte Excel-ark for hver eneste runde ("Runde 1", "Runde 2", osv.):**
+  - Excel-arbeidsboken genererer nå et eget separat fane-ark for samtlige spilte runder (`Runde 1`, `Runde 2`, `Runde 3`, osv.).
+  - I hvert runde-ark listes **alle deltakende lag sortert fra høyest til lavest poengsum** for akkurat den runden.
+  - Viser lagets rundepoeng, poengdifferanse til rundevinneren og vinnerstatus (🏆 Rundevinner fremhevet i grønt).
+  - Inneholder egen statistikkboks nederst per runde med Høyeste poengsum, Gjennomsnittsscore, Laveste poengsum og Antall lag.
+  - Sørger for synlige ark-faner i Microsoft Excel via eksplisitt `workbook.views = [{ visibility: 'visible' }]`.
+- **Cache-busting v1.7.0:**
+  - Lagt til versjonsparameter `?v=1.7.0` på alle CSS- og JavaScript-ressurser i `index.html` for å sikre at nettlesere umiddelbart henter nyeste versjon uten å vise gammel hurtigbuffer.
+
+### Forbedret (enhancement)
+- **Mer kompakt tabellhøyde i nettleseren:**
+  - Redusert vertikal padding i både redigeringsmodus og fullskjermvisning på lerret/projektor, slik at enda flere lag vises i sin helhet uten unødig rulling, samtidig som teksten forblir tydelig og lettlest for seniorer.
+
+---
+
 ## [1.6.0] - 2026-10-27
 
 ### Lagt til (feat)
