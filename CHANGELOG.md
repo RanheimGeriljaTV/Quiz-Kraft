@@ -3,6 +3,14 @@
 Alle vesentlige endringer i Quiz Kraft dokumenteres i denne filen.
 Formatet er basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
+## [Unreleased]
+
+### Fikset (fix)
+- **«Angre» sletter ikke lenger poeng du har skrevet inn:** Hver celle du skriver i (poeng eller lagnavn), blir nå ett eget angresteg. «Angre» tar bare bort det siste du skrev, i stedet for å hoppe tilbake til før forrige strukturendring og slette alle poeng skrevet etter den.
+
+### Lagt til (feat)
+- **Nettlesertest for «Angre»** (`tests/angre.spec.js`, Playwright). Valgfritt utviklerverktøy, kjøres med `npm test`. Appen selv trenger fortsatt ingen installasjon.
+
 ## [1.8.0] - 2026-10-27
 
 ### Lagt til (feat)

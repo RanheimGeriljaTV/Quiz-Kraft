@@ -13,3 +13,8 @@ desktop.ini
 .idea/
 *.sublime-project
 *.sublime-workspace
+
+# Valgfrie nettlesertester (npm test)
+node_modules/
+test-results/
+playwright-report/
