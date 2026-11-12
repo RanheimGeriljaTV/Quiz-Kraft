@@ -724,6 +724,8 @@ function bindTableEvents(container) {
   // 1. Poengfelter
   const scoreInputs = container.querySelectorAll('.score-input');
   scoreInputs.forEach(input => {
+    input.addEventListener('focus', () => beginCellEdit(input));
+
     input.addEventListener('input', (e) => {
       const tIdx = parseInt(e.target.dataset.teamIdx, 10);
       const rIdx = parseInt(e.target.dataset.roundIdx, 10);
@@ -759,6 +761,7 @@ function bindTableEvents(container) {
           appState.teams[tIdx].scores[rIdx] = formatted;
         }
       }
+      commitCellEdit(input);
       updateRoundHighlights(container);
       notifyChange(true);
     });
@@ -771,6 +774,8 @@ function bindTableEvents(container) {
   // 2. Lagnavn
   const teamNameInputs = container.querySelectorAll('.team-name-input');
   teamNameInputs.forEach(input => {
+    input.addEventListener('focus', () => beginCellEdit(input));
+
     input.addEventListener('input', (e) => {
       const tIdx = parseInt(e.target.dataset.teamIdx, 10);
       appState.teams[tIdx].name = e.target.value;
@@ -792,6 +797,7 @@ function bindTableEvents(container) {
     });
 
     input.addEventListener('blur', () => {
+      commitCellEdit(input);
       notifyChange(true);
     });
   });
@@ -1066,9 +1072,33 @@ function clearAllScores() {
   notifyChange(true);
 }
 
+/**
+ * Angrepunkt for innskrevne poeng og lagnavn.
+ * Tilstanden tas vare på når cellen får fokus, og legges på angre-stakken først når
+ * cellen forlates med en ny verdi. Alle tastetrykk i samme celle blir dermed ett angresteg.
+ */
+let pendingCellEdit = null;
+
 function saveUndoSnapshot() {
+  pendingCellEdit = null;
   if (window.QuizStorage) {
     window.QuizStorage.pushUndoState(appState);
+  }
+}
+
+function beginCellEdit(input) {
+  pendingCellEdit = {
+    input,
+    valueBefore: input.value,
+    snapshot: JSON.parse(JSON.stringify(appState))
+  };
+}
+
+function commitCellEdit(input) {
+  const edit = pendingCellEdit;
+  pendingCellEdit = null;
+  if (edit && edit.input === input && input.value !== edit.valueBefore && window.QuizStorage) {
+    window.QuizStorage.pushUndoState(edit.snapshot);
   }
 }
 

@@ -1,0 +1,11 @@
+{
+  "name": "quiz-kraft",
+  "private": true,
+  "description": "Kun for utviklere: valgfrie nettlesertester. Appen selv trenger ingenting av dette.",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}

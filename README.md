@@ -26,7 +26,7 @@ Applikasjonen kjører 100 % lokalt i nettleseren uten behov for database, server
 - **Smart tastaturnavigasjon:** Trykk `Enter` eller `Pil Ned` i en poengrute for å hoppe rett ned til neste lag i samme runde.
 - **Støtte for halvpoeng:** Både `8,5` og `8.5` aksepteres og formateres automatisk med norsk komma.
 - **Graderte farger på sammenlagtsum:** Varm og behagelig champagnegull-gradient nedover SUM-kolonnen som gir umiddelbar oversikt uten å gå på bekostning av lesbarhet.
-- **Angre-knapp (Undo):** Trykket du feil eller slettet et lag? Trykk *"Angre"* for å gå trygt tilbake.
+- **Angre-knapp (Undo):** Trykket du feil, skrev feil poeng eller slettet et lag? Trykk *"Angre"* for å gå ett steg tilbake. Hver celle du har skrevet i (poeng eller lagnavn), er ett steg, og poeng du har skrevet etterpå, beholdes.
 
 ### 2. 🖥️ Ren og Maksimert Fullskjerm (Projektor / Storskjerm)
 - **Regnearket maksimeres til 100 %:** I fullskjermvisning fjernes alle bunnlinjer, svevemenyer og fotnoter. Tabellen utnytter hele skjermhøyden og bredden på lerretet.
@@ -76,6 +76,14 @@ Når du trykker på **"Sorter etter poeng (Finn vinner)"**:
 2. Dobbeltklikk på filen `index.html`.
 3. Siden åpner seg umiddelbart i nettleseren og fungerer helt uten internettforbindelse.
 
+### Tester (valgfritt, kun for utviklere)
+Appen trenger ingen installasjon. Vil du kjøre nettlesertestene i `tests/`, trenger du Node.js:
+```
+npm install
+npx playwright install chromium
+npm test
+```
+
 ---
 
 ## ⌨️ Hurtigtaster
@@ -104,6 +112,9 @@ Quiz Kraft/
 │   └── excel-export.js     # Generering av formatert .xlsx med kantlinjer og farger
 ├── vendor/
 │   └── exceljs.min.js      # ExcelJS for 100 % offline formatert Excel-eksport
+├── tests/
+│   └── angre.spec.js       # Valgfrie nettlesertester (Playwright), kjøres med npm test
+├── package.json            # Kun for testene, appen selv trenger det ikke
 ├── .gitignore              # Git ignore-regler
 ├── CHANGELOG.md            # Versjonslogg
 └── README.md               # Denne dokumentasjonen
